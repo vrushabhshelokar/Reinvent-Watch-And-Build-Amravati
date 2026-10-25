@@ -7,7 +7,7 @@ import { CtaPlacement, trackCtaClick } from "@/lib/analytics";
 
 interface RegistrationButtonProps {
   placement: CtaPlacement;
-  variant?: "primary" | "secondary" | "outline" | "compact";
+  variant?: "primary" | "secondary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
   label?: string;
   className?: string;
@@ -18,7 +18,7 @@ export function RegistrationButton({
   placement,
   variant = "primary",
   size = "md",
-  label = "Register for Free",
+  label = "Register on Luma",
   className = "",
   showIcon = true,
 }: RegistrationButtonProps) {
@@ -29,37 +29,36 @@ export function RegistrationButton({
     trackCtaClick(placement, href);
   };
 
-  // Base styling adhering to Design.md
   let variantClasses = "";
   switch (variant) {
     case "primary":
       variantClasses =
-        "bg-[#ff9900] hover:bg-[#e88900] text-black font-semibold shadow-[0_0_20px_rgba(255,153,0,0.25)] hover:shadow-[0_0_28px_rgba(255,153,0,0.4)] border border-[#ffa726]";
+        "bg-[#ff9900] hover:bg-[#ffaa22] text-black font-semibold tracking-wide border border-[#ffb84d] shadow-[0_2px_14px_rgba(255,153,0,0.3)] hover:shadow-[0_4px_20px_rgba(255,153,0,0.45)]";
       break;
     case "secondary":
       variantClasses =
-        "bg-[#1a222d] hover:bg-[#212c3b] text-[#f5f7fa] font-medium border border-[#334052] hover:border-[#ff9900]/50";
+        "bg-[#151822] hover:bg-[#1c202d] text-[#f8fafc] font-medium border border-white/15 hover:border-[#ff9900]/70";
       break;
     case "outline":
       variantClasses =
-        "bg-transparent hover:bg-white/5 text-[#f5f7fa] font-medium border border-white/20 hover:border-[#ff9900]";
+        "bg-transparent hover:bg-white/[0.04] text-[#f8fafc] font-medium border border-white/20 hover:border-[#ff9900]";
       break;
-    case "compact":
+    case "ghost":
       variantClasses =
-        "bg-[#ff9900] hover:bg-[#e88900] text-black font-semibold text-xs py-2 px-3.5";
+        "bg-transparent hover:bg-white/[0.05] text-[#94a3b8] hover:text-[#f8fafc]";
       break;
   }
 
   let sizeClasses = "";
   switch (size) {
     case "sm":
-      sizeClasses = "text-xs px-4 py-2 rounded-md";
+      sizeClasses = "text-xs px-3.5 py-1.5 rounded-md font-mono";
       break;
     case "md":
-      sizeClasses = "text-sm px-5 py-2.5 rounded-lg";
+      sizeClasses = "text-xs sm:text-sm px-5 py-2.5 rounded-lg font-mono uppercase tracking-wider";
       break;
     case "lg":
-      sizeClasses = "text-base px-7 py-3.5 rounded-xl font-bold tracking-wide";
+      sizeClasses = "text-sm sm:text-base px-7 py-3.5 rounded-xl font-mono uppercase tracking-wider font-bold";
       break;
   }
 

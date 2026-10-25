@@ -18,7 +18,6 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Keyboard accessibility: Escape to close mobile menu
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && mobileMenuOpen) {
@@ -29,7 +28,6 @@ export function SiteHeader() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -43,51 +41,63 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
         scrolled || mobileMenuOpen
-          ? "bg-[#0a0d12]/90 backdrop-blur-md border-b border-[#242e3d]/80 shadow-lg"
-          : "bg-transparent border-b border-white/5"
+          ? "bg-[#08090d]/95 backdrop-blur-md border-b border-white/10 shadow-2xl"
+          : "bg-[#08090d]/60 backdrop-blur-sm border-b border-white/[0.06]"
       }`}
     >
       <nav
         aria-label="Primary Event Navigation"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between"
       >
-        {/* Brand Identity */}
+        {/* Brand Signature */}
         <Link
           href="/"
-          className="flex items-center gap-3 group focus:outline-none"
+          className="flex items-center gap-3.5 group focus:outline-none"
           aria-label="Reinvent Watch And Build Amravati Home"
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff9900] to-[#e88900] flex items-center justify-center font-black text-black text-sm tracking-tighter shadow-[0_0_12px_rgba(255,153,0,0.3)]">
-            WB
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold tracking-tight text-[#f5f7fa] group-hover:text-[#ff9900] transition-colors">
-              re:Invent <span className="font-light text-white/70">Watch &amp; Build</span>
-            </span>
-            <span className="text-[10px] uppercase tracking-widest text-[#ff9900] font-mono font-medium">
-              Amravati Edition
-            </span>
+          <div className="flex flex-col leading-none">
+            <div className="flex items-baseline gap-1.5 font-display text-xl sm:text-2xl font-bold tracking-tight text-white">
+              <span>re</span>
+              <span className="text-[#ff9900]">:</span>
+              <span>Invent</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-[10px] font-mono tracking-widest text-[#94a3b8] uppercase mt-1">
+              <span className="text-[#ff9900]">WATCH &amp; BUILD</span>
+              <span className="text-white/30">/</span>
+              <span>AMRAVATI</span>
+            </div>
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-8">
-          {navItems.map((item) => (
+        {/* Minimal Navigation Links with Slash Notation */}
+        <div className="hidden lg:flex items-center gap-7">
+          {navItems.map((item, idx) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-xs font-medium uppercase tracking-wider text-[#9aa7b8] hover:text-[#f5f7fa] transition-colors py-2"
+              className="text-xs font-mono uppercase tracking-wider text-[#94a3b8] hover:text-[#f8fafc] transition-colors py-2 flex items-center gap-1.5"
             >
-              {item.label}
+              <span className="text-[#ff9900]/70 font-mono text-[10px]">
+                0{idx + 1}
+              </span>
+              <span>{item.label}</span>
             </a>
           ))}
         </div>
 
-        {/* Desktop CTA */}
+        {/* Desktop CTA with Live Status */}
         <div className="hidden sm:flex items-center gap-4">
-          <RegistrationButton placement="navbar" size="sm" label="Register for Free" />
+          <div className="hidden xl:flex items-center gap-2 text-[11px] font-mono text-[#94a3b8] border-r border-white/10 pr-4">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>FEE: ₹0 // FREE ENTRY</span>
+          </div>
+          <RegistrationButton
+            placement="navbar"
+            size="sm"
+            label="Register on Luma"
+          />
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -98,44 +108,45 @@ export function SiteHeader() {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-            className="p-2 rounded-lg text-[#9aa7b8] hover:text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#ffd08a]"
+            className="p-2 rounded-lg text-[#94a3b8] hover:text-white hover:bg-white/[0.05] focus:outline-none focus:ring-1 focus:ring-[#ffd08a]"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Slide-down Menu */}
+      {/* Mobile Editorial Drawer */}
       {mobileMenuOpen && (
         <div
           id="mobile-menu"
-          className="lg:hidden fixed inset-x-0 top-18 bottom-0 bg-[#0a0d12]/98 backdrop-blur-xl border-b border-[#242e3d] px-6 py-8 flex flex-col justify-between overflow-y-auto"
+          className="lg:hidden fixed inset-x-0 top-18 bottom-0 bg-[#08090d]/98 backdrop-blur-xl border-b border-white/10 px-6 py-8 flex flex-col justify-between overflow-y-auto"
         >
           <div className="flex flex-col space-y-4">
-            <p className="text-xs uppercase tracking-widest text-[#ff9900] font-mono font-semibold mb-2">
-              Navigation
+            <p className="text-[11px] font-mono uppercase tracking-widest text-[#ff9900] mb-2">
+              INDEX // NAVIGATION
             </p>
-            {navItems.map((item) => (
+            {navItems.map((item, idx) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-lg font-medium text-[#f5f7fa] hover:text-[#ff9900] py-2 border-b border-white/5 transition-colors"
+                className="text-2xl font-display font-bold text-[#f8fafc] hover:text-[#ff9900] py-2 border-b border-white/5 transition-colors flex items-baseline justify-between"
               >
-                {item.label}
+                <span>{item.label}</span>
+                <span className="text-xs font-mono text-[#94a3b8]">0{idx + 1}</span>
               </a>
             ))}
           </div>
 
-          <div className="pt-8 flex flex-col gap-4">
-            <div className="flex items-center justify-between text-xs text-[#9aa7b8] pb-2 border-b border-white/10">
-              <span>Event Entry:</span>
-              <span className="text-[#ff9900] font-semibold">100% Free · ₹0</span>
+          <div className="pt-8 flex flex-col gap-4 border-t border-white/10">
+            <div className="flex items-center justify-between text-xs font-mono text-[#94a3b8]">
+              <span>ENTRY STATUS:</span>
+              <span className="text-[#ff9900] font-bold">100% FREE // ₹0</span>
             </div>
             <RegistrationButton
               placement="navbar"
               size="lg"
-              label="Register for Free on Luma"
+              label="Register on Luma — Free"
               className="w-full"
             />
           </div>
