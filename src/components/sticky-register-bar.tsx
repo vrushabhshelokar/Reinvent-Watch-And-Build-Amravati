@@ -7,16 +7,24 @@ export function StickyRegisterBar() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight;
-      const winHeight = window.innerHeight;
-      const nearBottom = scrollY + winHeight > docHeight - 450;
+    let ticking = false;
 
-      if (scrollY > 350 && !nearBottom) {
-        setVisible(true);
-      } else {
-        setVisible(false);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight;
+          const winHeight = window.innerHeight;
+          const nearBottom = scrollY + winHeight > docHeight - 450;
+
+          if (scrollY > 350 && !nearBottom) {
+            setVisible(true);
+          } else {
+            setVisible(false);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

@@ -74,12 +74,13 @@ export function HeroSection() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/images/hero-poster.jpg"
           disablePictureInPicture
           disableRemotePlayback
           className="h-full w-full object-cover object-center motion-reduce:hidden opacity-35 sm:opacity-40 scale-105 pointer-events-none select-none"
         >
+          <source src="/videos/hero_background.webm" type="video/webm" />
           <source src="/videos/hero_background.mp4" type="video/mp4" />
         </video>
       </div>
