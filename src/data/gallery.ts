@@ -8,30 +8,31 @@ import { GalleryPhoto } from "@/types/event";
 export const pastEventGallery: GalleryPhoto[] = [
   {
     id: "keynote-session",
-    src: "/images/gallery-1.jpg",
+    src: "/images/gallery-1.jpeg",
     alt: "Auditorium technology keynote and cloud computing session",
     caption: "Keynote & Cloud Architecture Sessions",
     category: "Technical Talk",
   },
   {
     id: "builder-hackathon",
-    src: "/images/gallery-2.jpg",
+    src: "/images/gallery-2.jpeg",
     alt: "Undergraduate students collaborating with laptops during hackathon lab",
     caption: "Hands-on Builder & Hackathon Labs",
     category: "Collaborative Lab",
   },
   {
     id: "stage-presentation",
-    src: "/images/gallery-3.jpg",
+    src: "/images/gallery-3.jpeg",
     alt: "Keynote presentation stage with digital cloud topology screens",
     caption: "Keynote Watch & Architecture Demos",
     category: "Presentation",
   },
   {
     id: "peer-discussion",
-    src: "/images/gallery-4.jpg",
+    src: "/images/gallery-4.jpeg",
     alt: "Collegiate developer group discussion and open networking",
     caption: "Student Builder Networking Circles",
     category: "Community",
   },
+  
 ];

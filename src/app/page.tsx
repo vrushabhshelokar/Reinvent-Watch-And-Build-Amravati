@@ -8,10 +8,10 @@ import { AgendaSection } from "@/components/agenda-section";
 import { CommunitySection } from "@/components/community-section";
 import { VenueFaqSection } from "@/components/venue-faq-section";
 import { RegistrationCTA } from "@/components/registration-cta";
-import { OrganizersSection } from "@/components/organizers-section";
+// import { OrganizersSection } from "@/components/organizers-section";
 import { SiteFooter } from "@/components/site-footer";
 import { StickyRegisterBar } from "@/components/sticky-register-bar";
-import { DevValidationBadge } from "@/components/dev-validation-badge";
+// import { DevValidationBadge } from "@/components/dev-validation-badge";
 
 export default function HomePage() {
   return (
@@ -45,7 +45,7 @@ export default function HomePage() {
         <RegistrationCTA />
 
         {/* 10. Organizing Committee (Final content section before footer) */}
-        <OrganizersSection />
+        {/* <OrganizersSection /> */}
       </main>
 
       {/* 11. Minimal Footer */}
@@ -53,7 +53,7 @@ export default function HomePage() {
 
       {/* Global Interface Elements */}
       <StickyRegisterBar />
-      <DevValidationBadge />
+      {/* <DevValidationBadge /> */}
     </>
   );
 }

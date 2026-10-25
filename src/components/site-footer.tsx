@@ -3,6 +3,26 @@ import Link from "next/link";
 import { navItems } from "@/data/navigation";
 import { VisitorCounter } from "./visitor-counter";
 
+function LinkedInIcon({ className, size = 13 }: { className?: string; size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.7}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
 export function SiteFooter() {
   const currentYear = 2026;
 
@@ -65,6 +85,24 @@ export function SiteFooter() {
         <p className="mt-4 sm:mt-5 max-w-3xl text-[10px] sm:text-[11px] leading-relaxed sm:leading-5 text-[#C2B6BA]/40 font-mono">
           Reinvent Watch And Build — Amravati is an independent, student-led community gathering inspired by AWS re:Invent. It is not an official Amazon Web Services conference, sponsorship, or corporate program. AWS and re:Invent are trademarks of Amazon.com, Inc. or its affiliates.
         </p>
+
+                {/* Developer Credit */}
+        <div className="mt-6 border-t border-white/5 pt-4 flex flex-col items-center gap-2 sm:flex-row sm:justify-end">
+          <p className="font-mono text-[10px] sm:text-[11px] tracking-wide text-[#C2B6BA]/40">
+            Designed & Developed by{" "}
+            <span className="text-[#F5F0EE]/70">Vrushabh Shelokar</span>
+          </p>
+
+          <a
+            href="https://www.linkedin.com/in/vrushabh-shelokar/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Connect with the developer on LinkedIn"
+            className="text-[#C2B6BA]/50 transition-colors duration-200 hover:text-[#C24A70]"
+          >
+            <LinkedInIcon size={13} />
+          </a>
+        </div>
       </div>
     </footer>
   );
