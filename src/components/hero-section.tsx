@@ -7,7 +7,7 @@ export function HeroSection() {
     <section
       id="hero"
       aria-label="Event Hero"
-      className="relative isolate min-h-screen flex items-center overflow-hidden bg-[#090809] text-[#F5F0EE] pt-24 pb-16"
+      className="relative isolate min-h-screen flex items-center overflow-hidden bg-[#090809] text-[#F5F0EE] pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-24 lg:pb-16"
     >
       {/* Full-bleed Background Video Layer */}
       <div className="absolute inset-0 -z-30 w-full h-full overflow-hidden" aria-hidden="true">
@@ -25,16 +25,16 @@ export function HeroSection() {
           playsInline
           preload="metadata"
           poster="/images/hero-poster.jpg"
-          className="h-full w-full object-cover object-center motion-reduce:hidden opacity-40 scale-105"
+          className="h-full w-full object-cover object-center motion-reduce:hidden opacity-35 sm:opacity-40 scale-105"
         >
           <source src="/videos/hero_background.mp4" type="video/mp4" />
         </video>
       </div>
 
       {/* Atmospheric Black-to-Burgundy Overlays */}
-      <div className="absolute inset-0 -z-20 bg-black/40" aria-hidden="true" />
+      <div className="absolute inset-0 -z-20 bg-black/55 sm:bg-black/40" aria-hidden="true" />
       <div
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-[#090809]/95 via-[#160B10]/70 to-transparent"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-[#090809]/95 via-[#160B10]/80 sm:via-[#160B10]/70 to-transparent"
         aria-hidden="true"
       />
       <div
@@ -47,35 +47,36 @@ export function HeroSection() {
       />
 
       {/* Asymmetric Left-Aligned Editorial Composition */}
-      <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16">
+      <div className="w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16">
         <div className="max-w-4xl text-left">
           {/* Eyebrow */}
-          <p className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.24em] text-[#C2B6BA]/85 mb-6 sm:mb-8">
+          <p className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] sm:tracking-[0.24em] text-[#C2B6BA]/85 mb-4 sm:mb-8">
             AMRAVATI · STUDENT TECHNOLOGY EVENT
           </p>
 
           {/* Main Headline */}
-          <h1 className="text-[clamp(3.2rem,9.5vw,7.8rem)] font-light leading-[0.88] tracking-[-0.065em] text-[#F5F0EE] mb-8">
+          <h1 className="text-[clamp(2.4rem,8.5vw,7.8rem)] sm:text-[clamp(3.2rem,9.5vw,7.8rem)] font-light leading-[0.9] sm:leading-[0.88] tracking-[-0.065em] text-[#F5F0EE] mb-6 sm:mb-8">
             Watch. Build.<br />
             <span className="font-normal text-[#F5F0EE]">Reinvent.</span>
           </h1>
 
           {/* Supporting Copy */}
-          <p className="max-w-xl text-base sm:text-lg font-light leading-relaxed text-[#C2B6BA] mb-4">
+          <p className="max-w-xl text-sm sm:text-lg font-light leading-relaxed text-[#C2B6BA] mb-3 sm:mb-4">
             Explore cloud technology, dissect production architectures, and connect with the student developer community.
           </p>
 
           {/* Minimal Event Coordinates */}
-          <p className="text-xs font-mono tracking-wider text-[#C2B6BA]/60 mb-10">
+          <p className="text-[11px] sm:text-xs font-mono tracking-wide sm:tracking-wider text-[#C2B6BA]/60 mb-8 sm:mb-10">
             {displayEventConfig.displayDate} · Amravati, Maharashtra · Free Entry
           </p>
 
           {/* Primary Outlined CTA */}
-          <div>
+          <div className="w-full sm:w-auto">
             <RegistrationButton
               placement="hero"
               size="lg"
               label="Register Now"
+              className="w-full sm:w-auto"
             />
           </div>
         </div>

@@ -98,7 +98,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} dark scroll-smooth`}
     >
-      <body className="min-h-screen bg-[#090809] text-[#F5F0EE] font-sans antialiased selection:bg-[#571D31] selection:text-[#F5F0EE]">
+      <body className="min-h-screen bg-[#090809] text-[#F5F0EE] font-sans antialiased overflow-x-hidden max-w-full selection:bg-[#571D31] selection:text-[#F5F0EE]">
         {children}
       </body>
     </html>

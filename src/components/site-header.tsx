@@ -49,23 +49,23 @@ export function SiteHeader() {
     >
       <nav
         aria-label="Main navigation"
-        className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 h-20 sm:h-22 flex items-center justify-between"
+        className="max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 h-16 sm:h-22 flex items-center justify-between"
       >
         {/* Restrained Wordmark */}
         <Link
           href="/"
-          className="group flex shrink-0 items-center gap-3 focus:outline-none"
+          className="group flex shrink-0 items-center gap-2.5 sm:gap-3 focus:outline-none"
           aria-label="Reinvent Watch And Build Amravati Home"
         >
           <span className="flex flex-col leading-none">
-            <span className="mb-1 text-[9px] font-medium uppercase tracking-[0.24em] text-[#C2B6BA]/70">
-              Student Builder Gathering
+            <span className="mb-0.5 sm:mb-1 text-[8px] sm:text-[9px] font-medium uppercase tracking-[0.22em] sm:tracking-[0.24em] text-[#C2B6BA]/70">
+              Student Technology Event
             </span>
-            <span className="text-[22px] sm:text-[26px] font-light tracking-[-0.05em] text-[#F5F0EE]">
+            <span className="text-[20px] sm:text-[26px] font-light tracking-[-0.05em] text-[#F5F0EE]">
               re<span className="text-[#C24A70]">:</span>Invent
             </span>
           </span>
-          <span className="mt-3 hidden sm:block border-l border-white/20 pl-3 text-[9px] font-medium uppercase leading-relaxed tracking-[0.2em] text-[#C2B6BA]/60">
+          <span className="mt-2.5 hidden sm:block border-l border-white/20 pl-3 text-[9px] font-medium uppercase leading-relaxed tracking-[0.2em] text-[#C2B6BA]/60">
             WATCH &amp;<br />BUILD AMRAVATI
           </span>
         </Link>
@@ -92,7 +92,7 @@ export function SiteHeader() {
           />
         </div>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile Hamburger Button with comfortable tap target */}
         <div className="flex md:hidden items-center">
           <button
             type="button"
@@ -100,7 +100,7 @@ export function SiteHeader() {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-            className="p-2 text-[#C2B6BA] hover:text-[#F5F0EE] focus:outline-none focus:ring-1 focus:ring-[#F5F0EE]"
+            className="p-2.5 -mr-1 text-[#C2B6BA] hover:text-[#F5F0EE] focus:outline-none focus:ring-1 focus:ring-[#F5F0EE] rounded-lg"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -111,9 +111,9 @@ export function SiteHeader() {
       {mobileMenuOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden fixed inset-x-0 top-20 bottom-0 bg-[#090809]/98 backdrop-blur-2xl border-b border-white/10 px-6 py-8 flex flex-col justify-between overflow-y-auto"
+          className="md:hidden fixed inset-x-0 top-16 bottom-0 bg-[#090809]/98 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col justify-between overflow-y-auto"
         >
-          <div className="flex flex-col space-y-5">
+          <div className="flex flex-col space-y-3">
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C24A70]">
               Navigation
             </span>
@@ -122,22 +122,22 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl font-light tracking-tight text-[#F5F0EE] hover:text-[#C24A70] py-1 transition-colors"
+                className="text-xl font-light tracking-tight text-[#F5F0EE] hover:text-[#C24A70] py-2 min-h-[44px] flex items-center transition-colors"
               >
                 {item.label}
               </a>
             ))}
           </div>
 
-          <div className="pt-8 border-t border-white/10">
-            <p className="text-xs text-[#C2B6BA] mb-4 font-mono">
+          <div className="pt-6 border-t border-white/10 pb-4">
+            <p className="text-xs text-[#C2B6BA] mb-3 font-mono">
               Amravati · 100% Free Entry
             </p>
             <RegistrationButton
               placement="navbar"
               size="lg"
               label="Register on Luma ↗"
-              className="w-full"
+              className="w-full justify-center"
             />
           </div>
         </div>
