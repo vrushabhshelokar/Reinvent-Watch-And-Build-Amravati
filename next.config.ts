@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: [
     "*.trycloudflare.com",
     "**.trycloudflare.com",
-    "barry-shorter-again-worthy.trycloudflare.com",
+    
   ],
   images: {
     formats: ["image/avif", "image/webp"],
