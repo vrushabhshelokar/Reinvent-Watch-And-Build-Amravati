@@ -1,8 +1,58 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 import { displayEventConfig } from "@/data/event";
 import { RegistrationButton } from "./registration-button";
 
 export function HeroSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // 1. Explicitly enforce muted properties on the DOM node for browser autoplay policies
+    video.defaultMuted = true;
+    video.muted = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+
+    // 2. Attempt playback with promise error handling
+    const startPlayback = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          // Autoplay was blocked or deferred by browser policy (e.g., low power mode, background tab)
+          console.warn("[HeroSection] Video autoplay deferred by browser:", error?.message || error);
+        });
+      }
+    };
+
+    startPlayback();
+
+    // 3. Fallback: If autoplay was deferred (e.g. mobile battery saver), start on first user interaction
+    const handleFirstInteraction = () => {
+      if (video && video.paused) {
+        video.play().catch(() => {});
+      }
+      cleanupListeners();
+    };
+
+    const cleanupListeners = () => {
+      window.removeEventListener("touchstart", handleFirstInteraction);
+      window.removeEventListener("scroll", handleFirstInteraction);
+      window.removeEventListener("click", handleFirstInteraction);
+    };
+
+    window.addEventListener("touchstart", handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener("scroll", handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener("click", handleFirstInteraction, { passive: true, once: true });
+
+    return () => {
+      cleanupListeners();
+    };
+  }, []);
+
   return (
     <section
       id="hero"
@@ -19,26 +69,29 @@ export function HeroSection() {
 
         {/* Video Element */}
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/images/hero-poster.jpg"
-          className="h-full w-full object-cover object-center motion-reduce:hidden opacity-35 sm:opacity-40 scale-105"
+          disablePictureInPicture
+          disableRemotePlayback
+          className="h-full w-full object-cover object-center motion-reduce:hidden opacity-35 sm:opacity-40 scale-105 pointer-events-none select-none"
         >
           <source src="/videos/hero_background.mp4" type="video/mp4" />
         </video>
       </div>
 
       {/* Atmospheric Black-to-Burgundy Overlays */}
-      <div className="absolute inset-0 -z-20 bg-black/55 sm:bg-black/40" aria-hidden="true" />
+      <div className="absolute inset-0 -z-20 bg-black/55 sm:bg-black/40 pointer-events-none" aria-hidden="true" />
       <div
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-[#090809]/95 via-[#160B10]/80 sm:via-[#160B10]/70 to-transparent"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-[#090809]/95 via-[#160B10]/80 sm:via-[#160B10]/70 to-transparent pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-[#090809] via-transparent to-[#090809]/50"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-[#090809] via-transparent to-[#090809]/50 pointer-events-none"
         aria-hidden="true"
       />
       <div
