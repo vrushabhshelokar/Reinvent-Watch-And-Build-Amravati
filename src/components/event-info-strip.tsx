@@ -2,72 +2,52 @@ import React from "react";
 import { displayEventConfig } from "@/data/event";
 
 export function EventInfoStrip() {
-  const infoItems = [
+  const items = [
     {
-      code: "01 // DATE",
-      label: "CALENDAR DATE",
+      label: "Date",
       value: displayEventConfig.displayDate,
-      status: "Awaiting Sign-off",
+      detail: "Schedule pending announcement",
     },
     {
-      code: "02 // TIME",
-      label: "SESSION WINDOW",
+      label: "Time",
       value: displayEventConfig.displayTime,
-      status: "India Standard Time",
+      detail: "India Standard Time (IST)",
     },
     {
-      code: "03 // VENUE",
-      label: "CAMPUS AUDITORIUM",
+      label: "Venue",
       value: displayEventConfig.displayVenue,
-      status: "Amravati, Maharashtra",
+      detail: "Amravati, Maharashtra",
     },
     {
-      code: "04 // FEE",
-      label: "REGISTRATION COST",
-      value: "₹0 // 100% FREE",
-      status: "Subject to Confirmation",
+      label: "Admission",
+      value: "₹0 Free",
+      detail: "Registration required via Luma",
       highlight: true,
-    },
-    {
-      code: "05 // FORMAT",
-      label: "GATHERING TYPE",
-      value: displayEventConfig.displayFormat,
-      status: "Interactive Community",
     },
   ];
 
   return (
     <section
-      aria-label="Event Logistics Manifest"
-      className="border-b border-white/10 bg-[#0e1017] relative z-10"
+      aria-label="Event Details"
+      className="border-y border-white/10 bg-[#0c0d14]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-white/10">
-          {infoItems.map((item, index) => (
-            <div
-              key={index}
-              className={`py-5 px-4 sm:px-5 flex flex-col justify-between transition-colors duration-150 hover:bg-white/[0.02] ${
-                item.highlight ? "bg-[#ff9900]/[0.04]" : ""
-              }`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-mono font-semibold tracking-wider text-[#94a3b8]">
-                  {item.code}
-                </span>
-                <span className="text-[9px] font-mono text-[#64748b] uppercase">
-                  {item.label}
-                </span>
-              </div>
-              <div>
-                <p className={`text-sm sm:text-base font-display font-bold leading-tight ${
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+          {items.map((item, idx) => (
+            <div key={idx} className="py-6 px-4 sm:px-6 flex flex-col justify-center">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">
+                {item.label}
+              </span>
+              <p
+                className={`mt-1 font-display text-lg sm:text-xl font-bold ${
                   item.highlight ? "text-[#ff9900]" : "text-white"
-                }`}>
-                  {item.value}
-                </p>
-                <p className="text-[10px] font-mono text-[#64748b] mt-1">
-                  {item.status}
-                </p>
-              </div>
+                }`}
+              >
+                {item.value}
+              </p>
+              <p className="mt-0.5 text-xs text-[#64748b]">
+                {item.detail}
+              </p>
             </div>
           ))}
         </div>

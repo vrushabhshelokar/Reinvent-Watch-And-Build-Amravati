@@ -33,23 +33,21 @@ export function SiteFooter() {
   return (
     <footer
       aria-label="Site Footer"
-      className="bg-[#08090d] pt-16 pb-12 text-[#94a3b8] text-xs font-mono"
+      className="bg-[#090a0f] pt-16 pb-12 text-[#94a3b8] text-xs font-mono"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           {/* Brand Column */}
           <div className="md:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="flex items-baseline gap-1 font-display text-xl font-bold text-white mb-2">
-                <span>re</span>
-                <span className="text-[#ff9900]">:</span>
-                <span>Invent</span>
+              <div className="font-display text-xl font-bold text-white mb-2">
+                re<span className="text-[#ff9900]">:</span>Invent
                 <span className="text-xs font-mono text-[#94a3b8] ml-2">
-                  {"//"} WATCH &amp; BUILD AMRAVATI
+                  Watch &amp; Build Amravati
                 </span>
               </div>
               <p className="text-xs text-[#94a3b8] max-w-sm leading-relaxed mb-6 font-sans">
-                A student-run technology initiative bringing together aspiring cloud engineers and web developers across institutions in Vidarbha.
+                A student-run technology initiative bringing together aspiring cloud engineers and developers in Vidarbha.
               </p>
             </div>
 
@@ -60,7 +58,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Community Profile"
-                className="w-8 h-8 rounded-lg bg-[#0e1017] border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center transition-colors"
               >
                 <GithubIcon className="w-4 h-4" />
               </a>
@@ -69,7 +67,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Community Profile"
-                className="w-8 h-8 rounded-lg bg-[#0e1017] border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center transition-colors"
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
@@ -78,14 +76,14 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Community Profile"
-                className="w-8 h-8 rounded-lg bg-[#0e1017] border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center transition-colors"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
               <a
                 href={`mailto:${displayEventConfig.contactEmail}`}
                 aria-label="Email the Organizing Committee"
-                className="w-8 h-8 rounded-lg bg-[#0e1017] border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:border-[#ff9900] hover:text-[#ff9900] flex items-center justify-center transition-colors"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -95,17 +93,16 @@ export function SiteFooter() {
           {/* Navigation Links */}
           <div className="md:col-span-3">
             <p className="text-[11px] font-mono uppercase tracking-widest text-white font-bold mb-4">
-              INDEX // JUMP LINKS
+              Navigation
             </p>
             <ul className="space-y-2 text-xs">
-              {navItems.map((item, idx) => (
+              {navItems.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="hover:text-[#ff9900] transition-colors flex items-center gap-2"
+                    className="hover:text-white transition-colors"
                   >
-                    <span className="text-[#64748b]">0{idx + 1}</span>
-                    <span>{item.label}</span>
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -114,25 +111,24 @@ export function SiteFooter() {
                   href="#register"
                   className="text-[#ff9900] hover:underline font-bold"
                 >
-                  → Register on Luma
+                  Register on Luma →
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Ethics & Legal */}
+          {/* Contact & Governance */}
           <div className="md:col-span-4">
             <p className="text-[11px] font-mono uppercase tracking-widest text-white font-bold mb-4">
-              COMMUNITY GOVERNANCE
+              Community Inquiries
             </p>
-            <p className="text-[11px] leading-relaxed text-[#64748b] mb-3 font-sans">
-              Organized by student volunteers across engineering colleges in Amravati. We adhere to an open, inclusive, and strictly respectful code of conduct.
+            <p className="text-xs leading-relaxed text-[#94a3b8] mb-3 font-sans">
+              Organized by student volunteers across colleges in Amravati. For student questions, demo submissions, or college partnerships:
             </p>
-            <p className="text-[11px] leading-relaxed text-[#64748b]">
-              Contact:{" "}
+            <p className="text-xs text-white">
               <a
                 href={`mailto:${displayEventConfig.contactEmail}`}
-                className="text-[#94a3b8] hover:text-[#ff9900] underline"
+                className="hover:text-[#ff9900] underline"
               >
                 {displayEventConfig.contactEmail}
               </a>
@@ -140,10 +136,10 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Legal Disclaimer & Developer Credit */}
+        {/* Disclaimer & Copyright */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-[#64748b]">
           <p className="max-w-2xl text-center md:text-left leading-relaxed font-sans">
-            <strong>Non-Affiliation Notice:</strong> Reinvent Watch And Build — Amravati is an independent, student-led community gathering inspired by AWS re:Invent. It is not an official Amazon Web Services conference, sponsorship, or corporate program. AWS and re:Invent are trademarks of Amazon.com, Inc. or its affiliates.
+            <strong>Non-Affiliation Notice:</strong> Reinvent Watch And Build — Amravati is an independent, student-led gathering inspired by AWS re:Invent. It is not an official Amazon Web Services conference, sponsorship, or corporate program. AWS and re:Invent are trademarks of Amazon.com, Inc. or its affiliates.
           </p>
 
           <div className="flex items-center gap-1.5 shrink-0">
@@ -154,7 +150,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-4 pt-4 border-t border-white/[0.04] text-center text-[10px] text-[#64748b]">
-          © {currentYear} Reinvent Watch And Build — Amravati. All rights reserved.
+          © {currentYear} Reinvent Watch And Build — Amravati.
         </div>
       </div>
     </footer>

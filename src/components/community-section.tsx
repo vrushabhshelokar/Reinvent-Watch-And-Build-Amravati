@@ -1,78 +1,58 @@
 import React from "react";
-import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { communitiesData } from "@/data/communities";
 
 export function CommunitySection() {
   return (
     <section
       id="communities"
-      aria-label="Community Collaboration"
-      className="py-20 md:py-28 bg-[#0b0d13] border-b border-white/10 relative overflow-hidden"
+      aria-label="Community Collaborators"
+      className="py-20 md:py-28 bg-[#090a0f] border-b border-white/10"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-[#ff9900] uppercase tracking-widest mb-2">
-              <span>05</span>
-              <span className="text-white/20">/</span>
-              <span>ECOSYSTEM PARTNERS</span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white">
-              COMMUNITY <span className="text-[#ff9900]">COLLABORATION.</span>
-            </h2>
-            <p className="mt-3 text-sm sm:text-base text-[#94a3b8] max-w-xl">
-              Uniting student-run developer circles, campus cloud clubs, and engineering societies across Amravati.
-            </p>
+        <div className="max-w-3xl mb-14">
+          <div className="text-xs font-mono uppercase tracking-widest text-[#ff9900] mb-3">
+            Community
           </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+            Collaborating Student Groups.
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-[#94a3b8]">
+            Grassroots student-run tech clubs and developer societies across Amravati collaborating to make this event happen.
+          </p>
         </div>
 
-        {/* Structured Directory Rows */}
-        <div className="border border-white/10 rounded-2xl bg-[#0e1017] divide-y divide-white/10 overflow-hidden">
+        {/* Minimal Community Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {communitiesData.map((community, index) => (
             <div
               key={community.id}
-              className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-center hover:bg-white/[0.02] transition-colors group"
+              className="p-7 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between"
             >
-              {/* Role & Index */}
-              <div className="md:col-span-3 flex items-center justify-between md:justify-start gap-3">
-                <span className="font-mono text-xs text-[#ff9900] font-bold">
-                  0{index + 1} {"//"}
-                </span>
-                <span className="px-2.5 py-1 rounded-sm bg-[#151822] border border-white/10 font-mono text-[11px] text-[#94a3b8] uppercase">
-                  {community.role}
-                </span>
-              </div>
-
-              {/* Name & Narrative */}
-              <div className="md:col-span-6">
-                <h3 className="font-display text-xl font-bold text-white group-hover:text-[#ff9900] transition-colors mb-1.5">
+              <div>
+                <div className="flex items-center justify-between text-xs font-mono text-[#94a3b8] mb-4">
+                  <span className="text-[#ff9900] font-bold">0{index + 1}</span>
+                  <span className="px-2 py-0.5 rounded bg-white/5 uppercase text-[10px]">
+                    {community.role}
+                  </span>
+                </div>
+                <h3 className="font-display text-xl font-bold text-white mb-2">
                   {community.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
+                <p className="text-sm text-[#94a3b8] leading-relaxed">
                   {community.description}
                 </p>
               </div>
 
-              {/* Verification & Link */}
-              <div className="md:col-span-3 flex items-center md:justify-end gap-4">
-                <span
-                  className={`inline-flex items-center gap-1 font-mono text-xs ${
-                    community.status === "Confirmed"
-                      ? "text-emerald-400"
-                      : "text-[#64748b]"
-                  }`}
-                >
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>{community.status}</span>
-                </span>
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-[#64748b]">
+                <span>Status: {community.status}</span>
                 {community.link && (
                   <a
                     href={community.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-[#151822] border border-white/10 hover:border-[#ff9900] text-white hover:text-[#ff9900] transition-colors"
-                    aria-label={`Visit ${community.name} profile`}
+                    className="text-[#94a3b8] hover:text-[#ff9900] transition-colors"
+                    aria-label={`Visit ${community.name}`}
                   >
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
@@ -82,14 +62,14 @@ export function CommunitySection() {
           ))}
         </div>
 
-        {/* Partnership Invitation Box */}
-        <div className="mt-8 p-6 rounded-2xl bg-[#0e1017] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs sm:text-sm text-[#94a3b8] text-left">
-            Run a college tech association or coding club in Vidarbha? Join as a recognized student community collaborator!
+        {/* Community Invite */}
+        <div className="mt-8 p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p className="text-sm text-[#94a3b8]">
+            Leading a student developer club in Vidarbha? Join as a recognized community collaborator.
           </p>
           <a
-            href="mailto:organizers.amravati@gmail.com?subject=Community%20Partner%20Inquiry"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-[#ff9900] hover:text-[#ffd08a] font-semibold whitespace-nowrap"
+            href="mailto:organizers.amravati@gmail.com?subject=Community%20Partner%20Collaboration"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-[#ff9900] hover:underline font-semibold shrink-0"
           >
             <span>Partner With Us</span>
             <ArrowUpRight className="w-3.5 h-3.5" />

@@ -2,12 +2,10 @@ import React from "react";
 import { SiteHeader } from "@/components/site-header";
 import { HeroSection } from "@/components/hero-section";
 import { EventInfoStrip } from "@/components/event-info-strip";
-import { BenefitsSection } from "@/components/benefits-section";
 import { AboutSection } from "@/components/about-section";
+import { BenefitsSection } from "@/components/benefits-section";
 import { AgendaSection } from "@/components/agenda-section";
 import { CommunitySection } from "@/components/community-section";
-import { PastEventsSection } from "@/components/past-events-section";
-import { OrganizersSection } from "@/components/organizers-section";
 import { VenueFaqSection } from "@/components/venue-faq-section";
 import { RegistrationCTA } from "@/components/registration-cta";
 import { SiteFooter } from "@/components/site-footer";
@@ -21,17 +19,17 @@ export default function HomePage() {
       <SiteHeader />
 
       <main className="min-h-screen">
-        {/* 2. Hero Section */}
+        {/* 2. Video-Led Hero Section */}
         <HeroSection />
 
         {/* 3. Event Information Strip */}
         <EventInfoStrip />
 
-        {/* 4. Why Attend? / Benefits */}
-        <BenefitsSection />
-
-        {/* 5. About the Event */}
+        {/* 4. About the Event */}
         <AboutSection />
+
+        {/* 5. Why Attend / Benefits */}
+        <BenefitsSection />
 
         {/* 6. Event Agenda / Timeline */}
         <AgendaSection />
@@ -39,20 +37,14 @@ export default function HomePage() {
         {/* 7. Community Collaboration */}
         <CommunitySection />
 
-        {/* 8. Past Events / Community Highlights */}
-        <PastEventsSection />
-
-        {/* 9. Organizing Committee */}
-        <OrganizersSection />
-
-        {/* 10. Venue and FAQ */}
+        {/* 8. Venue and FAQ */}
         <VenueFaqSection />
 
-        {/* 11. Final Registration CTA */}
+        {/* 9. Final Registration CTA */}
         <RegistrationCTA />
       </main>
 
-      {/* 12. Footer */}
+      {/* 10. Minimal Footer */}
       <SiteFooter />
 
       {/* Global Interface Elements */}

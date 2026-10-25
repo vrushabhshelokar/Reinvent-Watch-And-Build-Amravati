@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown, MapPin, Navigation, Mail, ArrowUpRight } from "lucide-react";
+import { ChevronDown, MapPin, Mail, ArrowUpRight } from "lucide-react";
 import { faqData } from "@/data/faq";
 import { displayEventConfig } from "@/data/event";
 
@@ -15,81 +15,56 @@ export function VenueFaqSection() {
   return (
     <section
       id="venue-faq"
-      aria-label="Venue Information and Frequently Asked Questions"
-      className="py-20 md:py-28 bg-[#08090d] border-b border-white/10 relative overflow-hidden"
+      aria-label="Venue and FAQ"
+      className="py-20 md:py-28 bg-[#090a0f] border-b border-white/10"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Venue Dispatch & Logistical Guidance */}
+          {/* Venue & Logistical Info */}
           <div className="lg:col-span-5">
-            <div className="flex items-center gap-2 text-xs font-mono text-[#ff9900] uppercase tracking-widest mb-2">
-              <span>08</span>
-              <span className="text-white/20">/</span>
-              <span>LOGISTICS &amp; LOCATION</span>
+            <div className="text-xs font-mono uppercase tracking-widest text-[#ff9900] mb-3">
+              Logistics
             </div>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white mb-6">
-              VENUE &amp; <span className="text-[#ff9900]">ACCESS.</span>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight mb-6">
+              Venue &amp; Location.
             </h2>
 
-            <div className="p-7 rounded-2xl bg-[#0e1017] border border-white/10 mb-6">
-              <div className="flex items-start gap-4 mb-5">
-                <div className="w-10 h-10 rounded-lg bg-[#151822] border border-white/10 flex items-center justify-center text-[#ff9900] shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
+            <div className="p-7 rounded-2xl bg-white/[0.02] border border-white/10 mb-6">
+              <div className="flex items-start gap-3.5 mb-4">
+                <MapPin className="w-5 h-5 text-[#ff9900] shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-display text-lg font-bold text-white">
                     {displayEventConfig.displayVenue}
                   </h3>
-                  <p className="text-xs font-mono text-[#ff9900] mt-0.5">
-                    {displayEventConfig.venueCity}
+                  <p className="text-xs text-[#94a3b8] mt-0.5">
+                    {displayEventConfig.venueCity}, Maharashtra
                   </p>
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed mb-6">
+              <p className="text-sm text-[#94a3b8] leading-relaxed mb-6">
                 {displayEventConfig.displayAddress}
               </p>
 
-              <div className="space-y-3 pt-4 border-t border-white/10 text-xs text-[#94a3b8] font-mono">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]" />
-                  <span>Central campus auditorium in Amravati (TBA)</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]" />
-                  <span>Accessible via city bus routes &amp; shared autos</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]" />
-                  <span>Two-wheeler campus parking available</span>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-5 border-t border-white/10">
-                <button
-                  type="button"
-                  disabled
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#151822] border border-white/10 text-xs font-mono text-[#64748b] cursor-not-allowed"
-                  title="Google Maps link will be enabled once venue is confirmed"
-                >
-                  <Navigation className="w-3.5 h-3.5" />
-                  <span>Google Maps link unlocks with venue sign-off</span>
-                </button>
+              <div className="pt-4 border-t border-white/10 space-y-2 text-xs font-mono text-[#94a3b8]">
+                <div>• Central campus auditorium in Amravati (TBA)</div>
+                <div>• Accessible via city bus routes &amp; shared autos</div>
+                <div>• Two-wheeler campus parking available</div>
               </div>
             </div>
 
-            {/* Direct Contact Box */}
-            <div className="p-6 rounded-2xl bg-[#0e1017] border border-white/10">
-              <div className="flex items-center gap-3 mb-2">
+            {/* Inquiries / Contact */}
+            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+              <div className="flex items-center gap-2.5 mb-2">
                 <Mail className="w-4 h-4 text-[#ff9900]" />
-                <h4 className="font-display text-sm font-bold text-white">Student Query Helpdesk</h4>
+                <h4 className="font-display text-sm font-bold text-white">Student Questions?</h4>
               </div>
               <p className="text-xs text-[#94a3b8] leading-relaxed mb-3">
-                Have specific queries regarding attendance permissions, project demos, or accessibility accommodations?
+                Have questions regarding demo slots, attendee check-in, or group registrations?
               </p>
               <a
-                href={`mailto:${displayEventConfig.contactEmail}?subject=Query%20Regarding%20Amravati%20Watch%20and%20Build`}
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-[#ff9900] hover:text-[#ffd08a] font-semibold"
+                href={`mailto:${displayEventConfig.contactEmail}?subject=Amravati%20Watch%20and%20Build%20Query`}
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-[#ff9900] hover:underline font-semibold"
               >
                 <span>{displayEventConfig.contactEmail}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -97,22 +72,20 @@ export function VenueFaqSection() {
             </div>
           </div>
 
-          {/* Right Column: Minimal Hairline FAQ Accordion */}
+          {/* Frequently Asked Questions */}
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-2 text-xs font-mono text-[#ff9900] uppercase tracking-widest mb-2">
-              <span>09</span>
-              <span className="text-white/20">/</span>
-              <span>INQUIRIES</span>
+            <div className="text-xs font-mono uppercase tracking-widest text-[#ff9900] mb-3">
+              FAQ
             </div>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white mb-8">
-              FREQUENTLY ASKED <span className="text-[#ff9900]">QUESTIONS.</span>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight mb-8">
+              Frequently Asked Questions.
             </h2>
 
             <div className="divide-y divide-white/10 border-y border-white/10" role="region" aria-label="FAQ Accordion">
-              {faqData.map((faq, index) => {
+              {faqData.map((faq) => {
                 const isOpen = openId === faq.id;
                 return (
-                  <div key={faq.id} className="py-4.5 transition-colors">
+                  <div key={faq.id} className="py-4">
                     <h3>
                       <button
                         type="button"
@@ -120,13 +93,10 @@ export function VenueFaqSection() {
                         aria-expanded={isOpen}
                         aria-controls={`faq-answer-${faq.id}`}
                         onClick={() => toggleAccordion(faq.id)}
-                        className="w-full text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-1 focus:ring-[#ffd08a] py-2 group"
+                        className="w-full text-left flex items-center justify-between gap-4 py-1 text-white hover:text-[#ff9900] transition-colors focus:outline-none focus:ring-1 focus:ring-[#ff9900]"
                       >
-                        <span className="font-display text-base sm:text-lg font-bold text-white group-hover:text-[#ff9900] transition-colors flex items-baseline gap-3">
-                          <span className="font-mono text-xs text-[#ff9900]/70 shrink-0">
-                            0{index + 1}
-                          </span>
-                          <span>{faq.question}</span>
+                        <span className="font-display text-base sm:text-lg font-semibold">
+                          {faq.question}
                         </span>
                         <ChevronDown
                           className={`w-4 h-4 text-[#ff9900] shrink-0 transition-transform duration-200 ${
@@ -142,7 +112,7 @@ export function VenueFaqSection() {
                         id={`faq-answer-${faq.id}`}
                         role="region"
                         aria-labelledby={`faq-btn-${faq.id}`}
-                        className="pl-7 pr-4 pt-2 pb-4 text-xs sm:text-sm text-[#94a3b8] leading-relaxed"
+                        className="pt-2 pb-3 pr-6 text-sm text-[#94a3b8] leading-relaxed"
                       >
                         <p>{faq.answer}</p>
                       </div>
