@@ -5,37 +5,34 @@
   --font-display: var(--font-display), "Space Grotesk", sans-serif;
   --font-mono: var(--font-mono), "JetBrains Mono", monospace;
 
-  --color-bg-base: #08090d;
-  --color-surface: #0e1017;
-  --color-surface-raised: #151822;
-  --color-surface-overlay: #1c202d;
+  --color-bg-base: #090809;
+  --color-surface-dark: #160B10;
+  --color-surface-burgundy: #35101E;
+  --color-surface-wine: #571D31;
 
-  --color-border-hairline: rgba(255, 255, 255, 0.08);
-  --color-border-subtle: rgba(255, 255, 255, 0.14);
-  --color-border-strong: rgba(255, 255, 255, 0.22);
+  --color-text-warm: #F5F0EE;
+  --color-text-muted: #C2B6BA;
+  --color-text-dim: #8A7B82;
 
-  --color-accent: #ff9900;
-  --color-accent-hover: #e88900;
-  --color-accent-amber: #ffd08a;
+  --color-border-subtle: rgba(245, 240, 238, 0.12);
+  --color-border-medium: rgba(245, 240, 238, 0.22);
 
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #94a3b8;
-  --color-text-tertiary: #64748b;
+  --color-accent-wine: #802343;
+  --color-accent-rose: #C24A70;
 }
 
 :root {
-  --background: #08090d;
-  --foreground: #f8fafc;
-  --color-accent: #ff9900;
-  --color-accent-hover: #e88900;
-  --color-focus: #ffd08a;
+  --background: #090809;
+  --foreground: #F5F0EE;
+  --color-border: rgba(245, 240, 238, 0.12);
+  --color-focus: #F5F0EE;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
-  background-color: #08090d;
-  color: #f8fafc;
+  background-color: #090809;
+  color: #F5F0EE;
   color-scheme: dark;
 }
 
@@ -52,8 +49,8 @@ html {
 }
 
 body {
-  background-color: #08090d;
-  color: #f8fafc;
+  background-color: #090809;
+  color: #F5F0EE;
   min-height: 100vh;
   overflow-x: hidden;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -62,42 +59,11 @@ body {
 /* Headings use the expressive display font */
 h1, h2, h3, .font-display {
   font-family: var(--font-display), "Space Grotesk", sans-serif;
-  letter-spacing: -0.035em;
-}
-
-/* Subtle architectural blueprint grid */
-.tech-blueprint {
-  background-size: 48px 48px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-}
-
-/* Subtle architectural horizontal crosshair */
-.hairline-crosshair {
-  position: relative;
-}
-.hairline-crosshair::before {
-  content: "+";
-  position: absolute;
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.35);
-  top: -7px;
-  left: -4px;
-}
-.hairline-crosshair::after {
-  content: "+";
-  position: absolute;
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.35);
-  top: -7px;
-  right: -4px;
+  letter-spacing: -0.04em;
 }
 
 /* Custom focus ring */
 *:focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 1.5px solid var(--color-focus);
   outline-offset: 2px;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { ArrowDown, MapPin, Calendar, Ticket } from "lucide-react";
 import { displayEventConfig } from "@/data/event";
 import { RegistrationButton } from "./registration-button";
 
@@ -7,14 +6,14 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      aria-label="Event Introduction"
-      className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#090a0f]"
+      aria-label="Event Hero"
+      className="relative isolate min-h-screen flex items-center overflow-hidden bg-[#090809] text-[#F5F0EE] pt-24 pb-16"
     >
-      {/* Background Video Layer */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden" aria-hidden="true">
-        {/* Static Poster Fallback for Reduced Motion */}
+      {/* Full-bleed Background Video Layer */}
+      <div className="absolute inset-0 -z-30 w-full h-full overflow-hidden" aria-hidden="true">
+        {/* Reduced motion static fallback */}
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center hidden motion-reduce:block opacity-40"
+          className="absolute inset-0 w-full h-full bg-cover bg-center hidden motion-reduce:block opacity-35"
           style={{ backgroundImage: "url('/images/hero-poster.jpg')" }}
         />
 
@@ -26,67 +25,58 @@ export function HeroSection() {
           playsInline
           preload="metadata"
           poster="/images/hero-poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover motion-reduce:hidden opacity-45 scale-105"
+          className="h-full w-full object-cover object-center motion-reduce:hidden opacity-40 scale-105"
         >
           <source src="/videos/hero_background.mp4" type="video/mp4" />
         </video>
-
-        {/* Dark readability overlays */}
-        <div className="absolute inset-0 bg-[#090a0f]/70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090a0f]/80 via-transparent to-[#090a0f]" />
       </div>
 
-      {/* Foreground Content */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
-        {/* Location & Status Tag */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#94a3b8] mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]" aria-hidden="true" />
-          <span className="text-white font-medium">Amravati, Maharashtra</span>
-          <span className="text-white/20">|</span>
-          <span>Student Builder Gathering</span>
-        </div>
+      {/* Atmospheric Black-to-Burgundy Overlays */}
+      <div className="absolute inset-0 -z-20 bg-black/40" aria-hidden="true" />
+      <div
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-[#090809]/95 via-[#160B10]/70 to-transparent"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-[#090809] via-transparent to-[#090809]/50"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_80%_75%,rgba(87,29,49,0.35),transparent_55%)]"
+        aria-hidden="true"
+      />
 
-        {/* Primary Event Title */}
-        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.02] mb-6">
-          Reinvent <br className="hidden sm:inline" />
-          <span className="text-[#ff9900]">Watch And Build</span>
-        </h1>
+      {/* Asymmetric Left-Aligned Editorial Composition */}
+      <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="max-w-4xl text-left">
+          {/* Eyebrow */}
+          <p className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.24em] text-[#C2B6BA]/85 mb-6 sm:mb-8">
+            AMRAVATI · STUDENT TECHNOLOGY EVENT
+          </p>
 
-        {/* Tagline */}
-        <p className="max-w-2xl text-base sm:text-xl text-[#94a3b8] font-normal leading-relaxed mb-10">
-          Watch curated global keynote releases, dissect real-world cloud architectures, and connect with student developers across Vidarbha.
-        </p>
+          {/* Main Headline */}
+          <h1 className="text-[clamp(3.2rem,9.5vw,7.8rem)] font-light leading-[0.88] tracking-[-0.065em] text-[#F5F0EE] mb-8">
+            Watch. Build.<br />
+            <span className="font-normal text-[#F5F0EE]">Reinvent.</span>
+          </h1>
 
-        {/* Registration CTA */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-12">
-          <RegistrationButton
-            placement="hero"
-            size="lg"
-            label="Register on Luma"
-            className="w-full sm:w-auto min-w-[220px]"
-          />
-          <a
-            href="#about"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-xs sm:text-sm font-mono uppercase tracking-wider text-[#94a3b8] hover:text-white bg-white/5 border border-white/10 hover:border-white/25 transition-colors w-full sm:w-auto"
-          >
-            <span>Learn More</span>
-            <ArrowDown className="w-3.5 h-3.5 text-[#ff9900]" aria-hidden="true" />
-          </a>
-        </div>
+          {/* Supporting Copy */}
+          <p className="max-w-xl text-base sm:text-lg font-light leading-relaxed text-[#C2B6BA] mb-4">
+            Explore cloud technology, dissect production architectures, and connect with the student developer community.
+          </p>
 
-        {/* Essential Logistics Strip */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 pt-8 border-t border-white/10 w-full max-w-2xl text-xs font-mono text-[#94a3b8]">
-          <div className="flex items-center justify-center gap-2">
-            <Calendar className="w-4 h-4 text-[#ff9900]" />
-            <span>Date: {displayEventConfig.displayDate}</span>
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <MapPin className="w-4 h-4 text-[#ff9900]" />
-            <span>Venue: {displayEventConfig.venueCity}</span>
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <Ticket className="w-4 h-4 text-emerald-400" />
-            <span className="text-white font-medium">Entry: ₹0 Free</span>
+          {/* Minimal Event Coordinates */}
+          <p className="text-xs font-mono tracking-wider text-[#C2B6BA]/60 mb-10">
+            {displayEventConfig.displayDate} · Amravati, Maharashtra · Free Entry
+          </p>
+
+          {/* Primary Outlined CTA */}
+          <div>
+            <RegistrationButton
+              placement="hero"
+              size="lg"
+              label="Register Now"
+            />
           </div>
         </div>
       </div>

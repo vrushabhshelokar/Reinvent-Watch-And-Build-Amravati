@@ -29,23 +29,22 @@ export function StickyRegisterBar() {
   return (
     <aside
       aria-label="Quick Registration Bar"
-      className="md:hidden fixed bottom-0 inset-x-0 z-30 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-[#08090d]/95 backdrop-blur-lg border-t border-white/15 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] transition-all duration-300"
+      className="md:hidden fixed bottom-0 inset-x-0 z-40 p-3.5 pb-[max(0.85rem,env(safe-area-inset-bottom))] bg-[#090809]/95 backdrop-blur-xl border-t border-white/10 transition-all duration-300"
     >
       <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
         <div className="flex flex-col">
-          <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#ff9900] uppercase tracking-wider font-bold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>FREE ENTRY // ₹0</span>
-          </div>
-          <span className="text-xs font-display font-bold text-white">
-            Watch &amp; Build Amravati
+          <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-[#C24A70]">
+            Amravati · ₹0 Free
+          </span>
+          <span className="text-xs font-light text-[#F5F0EE] tracking-tight">
+            Watch &amp; Build
           </span>
         </div>
 
         <RegistrationButton
           placement="sticky_mobile"
           size="sm"
-          label="Reserve Spot ↗"
+          label="Register ↗"
           className="shrink-0"
         />
       </div>

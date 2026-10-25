@@ -4,48 +4,43 @@ import { displayEventConfig } from "@/data/event";
 export function EventInfoStrip() {
   const items = [
     {
-      label: "Date",
+      label: "DATE",
       value: displayEventConfig.displayDate,
       detail: "Schedule pending announcement",
     },
     {
-      label: "Time",
+      label: "TIME",
       value: displayEventConfig.displayTime,
       detail: "India Standard Time (IST)",
     },
     {
-      label: "Venue",
+      label: "VENUE",
       value: displayEventConfig.displayVenue,
       detail: "Amravati, Maharashtra",
     },
     {
-      label: "Admission",
+      label: "ADMISSION",
       value: "₹0 Free",
-      detail: "Registration required via Luma",
-      highlight: true,
+      detail: "Advance Luma registration required",
     },
   ];
 
   return (
     <section
       aria-label="Event Details"
-      className="border-y border-white/10 bg-[#0c0d14]"
+      className="relative overflow-hidden border-y border-white/[0.08] bg-[#0E070B]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.08]">
           {items.map((item, idx) => (
-            <div key={idx} className="py-6 px-4 sm:px-6 flex flex-col justify-center">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#94a3b8]">
+            <div key={idx} className="py-6 sm:py-8 px-4 sm:px-8 flex flex-col justify-center">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C2B6BA]/60">
                 {item.label}
               </span>
-              <p
-                className={`mt-1 font-display text-lg sm:text-xl font-bold ${
-                  item.highlight ? "text-[#ff9900]" : "text-white"
-                }`}
-              >
+              <p className="mt-2 font-display text-lg sm:text-xl font-light text-[#F5F0EE] tracking-tight">
                 {item.value}
               </p>
-              <p className="mt-0.5 text-xs text-[#64748b]">
+              <p className="mt-1 text-xs text-[#C2B6BA]/60 font-light">
                 {item.detail}
               </p>
             </div>

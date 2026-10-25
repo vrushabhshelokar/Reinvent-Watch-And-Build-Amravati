@@ -1,5 +1,4 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
 import { provisionalAgenda, agendaStatus } from "@/data/agenda";
 
 export function AgendaSection() {
@@ -7,52 +6,53 @@ export function AgendaSection() {
     <section
       id="agenda"
       aria-label="Event Agenda"
-      className="py-20 md:py-28 bg-[#090a0f] border-b border-white/10"
+      className="relative overflow-hidden bg-[#090809] px-6 py-20 text-[#F5F0EE] sm:px-10 sm:py-24 lg:px-16 border-b border-white/[0.08]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-14">
-          <div className="text-xs font-mono uppercase tracking-widest text-[#ff9900] mb-3">
-            Agenda
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-            Session Outline &amp; Tracks.
+      <div className="relative mx-auto max-w-[1600px]">
+        {/* Section Header */}
+        <div className="mb-12 max-w-3xl">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#C2B6BA]/60 block mb-3">
+            Program Tracks
+          </span>
+          <h2 className="text-4xl font-light tracking-[-0.06em] sm:text-6xl text-[#F5F0EE]">
+            Session <span className="text-[#C24A70]">Outline.</span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#94a3b8]">
+          <p className="mt-4 text-base sm:text-lg font-light text-[#C2B6BA]/80 leading-relaxed">
             {agendaStatus.announcementNote}
           </p>
         </div>
 
         {/* Minimal Agenda Rows */}
-        <div className="border border-white/10 rounded-2xl bg-white/[0.01] divide-y divide-white/10 overflow-hidden">
+        <div className="border-y border-white/15 divide-y divide-white/10">
           {provisionalAgenda.map((session, index) => (
             <div
               key={index}
-              className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 items-start"
+              className="py-8 sm:py-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start group"
             >
+              {/* Session Index & Type */}
               <div className="md:col-span-3">
-                <span className="font-mono text-xs text-[#ff9900] font-bold">
-                  0{index + 1}
+                <span className="text-xs font-mono tracking-wider text-[#C24A70]">
+                  / 0{index + 1}
                 </span>
-                <p className="font-mono text-xs text-[#64748b] mt-1">
-                  {session.timeEstimate} · Timing TBA
+                <p className="text-xs font-mono uppercase tracking-[0.14em] text-[#C2B6BA]/50 mt-1">
+                  {session.type}
                 </p>
               </div>
 
+              {/* Session Details */}
               <div className="md:col-span-7">
-                <div className="inline-block px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-[#94a3b8] uppercase mb-2">
-                  {session.type}
-                </div>
-                <h3 className="font-display text-xl font-bold text-white mb-2">
+                <h3 className="text-xl sm:text-2xl font-light tracking-tight text-[#F5F0EE] mb-2 group-hover:text-white transition-colors">
                   {session.blockTitle}
                 </h3>
-                <p className="text-sm text-[#94a3b8] leading-relaxed">
+                <p className="text-sm font-light text-[#C2B6BA]/75 leading-relaxed max-w-2xl">
                   {session.description}
                 </p>
               </div>
 
+              {/* Status */}
               <div className="md:col-span-2 md:text-right">
-                <span className="inline-block text-[11px] font-mono text-[#64748b]">
-                  {session.statusNote}
+                <span className="text-xs font-mono text-[#C2B6BA]/50 tracking-wider">
+                  Timing TBA
                 </span>
               </div>
             </div>
@@ -60,19 +60,18 @@ export function AgendaSection() {
         </div>
 
         {/* Student Demo Callout */}
-        <div className="mt-8 p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h4 className="font-display text-base font-bold text-white">Have a project or build to showcase?</h4>
-            <p className="text-xs text-[#94a3b8] mt-0.5">
-              The Student Demo Arena gives undergraduate builders 5 minutes to showcase real code and projects.
+            <h4 className="text-base font-light text-[#F5F0EE]">Have an undergraduate project to demo?</h4>
+            <p className="text-xs text-[#C2B6BA]/70 mt-1 font-light">
+              The Student Demo Arena invites collegiate builders to present 5-minute technical walkthroughs.
             </p>
           </div>
           <a
             href="mailto:organizers.amravati@gmail.com?subject=Student%20Demo%20Arena%20Proposal"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-[#ff9900] hover:underline font-semibold shrink-0"
+            className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.14em] text-[#F5F0EE] hover:text-[#C24A70] transition-colors shrink-0"
           >
-            <span>Submit Demo Proposal</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <span>Submit Demo ↗</span>
           </a>
         </div>
       </div>

@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://reinvent-amravati.vercel.app";
 
 export const viewport: Viewport = {
-  themeColor: "#08090d",
+  themeColor: "#090809",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -98,7 +98,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} dark scroll-smooth`}
     >
-      <body className="min-h-screen bg-[#08090d] text-[#f8fafc] font-sans antialiased selection:bg-[#ff9900]/30 selection:text-[#ffd08a]">
+      <body className="min-h-screen bg-[#090809] text-[#F5F0EE] font-sans antialiased selection:bg-[#571D31] selection:text-[#F5F0EE]">
         {children}
       </body>
     </html>

@@ -1,37 +1,56 @@
 import React from "react";
-import { Info } from "lucide-react";
 
 export function AboutSection() {
   return (
     <section
       id="about"
       aria-label="About the Event"
-      className="py-20 md:py-28 bg-[#090a0f] border-b border-white/10"
+      className="relative isolate overflow-hidden bg-[#090809] px-6 py-20 text-[#F5F0EE] sm:px-10 sm:py-24 lg:px-16 lg:py-28 border-b border-white/[0.08]"
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-xs font-mono uppercase tracking-widest text-[#ff9900] mb-3">
-          About the Event
-        </div>
+      {/* Subtle Burgundy Ambient Glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_0%,rgba(53,16,30,0.35),transparent_60%)]"
+      />
 
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-8">
-          A grassroots gathering for student builders in Vidarbha.
-        </h2>
+      <div className="mx-auto max-w-[1600px]">
+        <div className="grid grid-cols-1 gap-12 sm:gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-24 items-start">
+          {/* Left Narrative Column */}
+          <div className="min-w-0">
+            <p className="mb-6 text-xs font-mono uppercase tracking-[0.2em] text-[#C2B6BA]/60">
+              A grassroots technology gathering
+            </p>
+            <h2 className="text-[clamp(2.8rem,7vw,5.5rem)] font-light leading-[0.9] tracking-[-0.06em] text-[#F5F0EE]">
+              Imagine.<br />
+              Build.<br />
+              <span className="text-[#C24A70]">Reinvent.</span>
+            </h2>
+            <p className="mt-8 max-w-xl text-[15px] sm:text-lg font-light leading-relaxed text-[#C2B6BA]">
+              Reinvent Watch And Build — Amravati brings undergraduate developers, students, and aspiring engineers together to explore technology, dissect modern serverless architectures, and build what comes next.
+            </p>
+            <p className="mt-4 max-w-xl text-sm font-light leading-relaxed text-[#C2B6BA]/75">
+              Rather than watching conference announcements in isolation, this in-person gathering creates a space for collegiate builders in Vidarbha to analyze real production systems and collaborate on open-source projects.
+            </p>
+          </div>
 
-        <div className="space-y-6 text-base sm:text-lg text-[#94a3b8] leading-relaxed">
-          <p>
-            <strong className="text-white font-medium">Reinvent Watch And Build — Amravati</strong> is an independent, student-led tech event designed to bridge global cloud innovation with local student development. While major tech summits take place thousands of miles away, undergraduate developers across Amravati and Vidarbha are actively building real projects.
-          </p>
-          <p>
-            Rather than streaming keynotes alone in dorm rooms, we gather in person to watch key announcements, deconstruct modern serverless and cloud architectures, and connect with peers building open-source tools and software.
-          </p>
-        </div>
+          {/* Right Community Statement Column */}
+          <div className="flex min-w-0 flex-col justify-end">
+            <div className="border-t border-white/15 pt-6 sm:pt-8">
+              <span className="text-xs font-mono uppercase tracking-[0.18em] text-[#C24A70]">
+                The Community Behind The Gathering
+              </span>
+              <h3 className="mt-4 text-2xl sm:text-3xl font-light leading-tight tracking-tight text-[#F5F0EE]">
+                Student Builders of Amravati
+              </h3>
+              <p className="mt-4 text-sm sm:text-base font-light leading-relaxed text-[#C2B6BA]">
+                We are a student-led developer network uniting peers across colleges in Amravati. Our goal is straightforward: help students move beyond generic tutorials, experiment with cloud infrastructure, and turn classroom theory into working software.
+              </p>
+            </div>
 
-        {/* Clear non-affiliation notice */}
-        <div className="mt-10 p-5 rounded-xl bg-white/[0.02] border border-white/10 flex items-start gap-3.5 text-xs text-[#94a3b8]">
-          <Info className="w-4 h-4 text-[#ff9900] shrink-0 mt-0.5" aria-hidden="true" />
-          <p>
-            <strong className="text-white">Community Disclaimer:</strong> This is a community-run initiative organized by local students and developers. It is not an official Amazon Web Services conference, sponsorship, or corporate program.
-          </p>
+            <div className="mt-8 border-t border-white/10 pt-5 text-xs font-mono text-[#C2B6BA]/50 leading-relaxed">
+              <strong className="text-[#C2B6BA]">Autonomous Notice:</strong> Independently organized by student builders in Vidarbha. Not an official Amazon Web Services conference, sponsorship, or corporate program.
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown, MapPin, Mail, ArrowUpRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { faqData } from "@/data/faq";
 import { displayEventConfig } from "@/data/event";
 
@@ -15,77 +15,72 @@ export function VenueFaqSection() {
   return (
     <section
       id="venue-faq"
-      aria-label="Venue and FAQ"
-      className="py-20 md:py-28 bg-[#090a0f] border-b border-white/10"
+      aria-label="Venue and Frequently Asked Questions"
+      className="relative overflow-hidden bg-[#090809] px-6 py-20 text-[#F5F0EE] sm:px-10 sm:py-24 lg:px-16 border-b border-white/[0.08]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Venue & Logistical Info */}
-          <div className="lg:col-span-5">
-            <div className="text-xs font-mono uppercase tracking-widest text-[#ff9900] mb-3">
-              Logistics
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight mb-6">
-              Venue &amp; Location.
+      <div className="mx-auto max-w-[1600px]">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-start">
+          {/* Left Column: Venue & Logistics */}
+          <div>
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#C2B6BA]/60 block mb-3">
+              Logistics &amp; Access
+            </span>
+            <h2 className="text-4xl font-light tracking-[-0.06em] sm:text-5xl text-[#F5F0EE] mb-8">
+              Venue &amp; <span className="text-[#C24A70]">Location.</span>
             </h2>
 
-            <div className="p-7 rounded-2xl bg-white/[0.02] border border-white/10 mb-6">
-              <div className="flex items-start gap-3.5 mb-4">
-                <MapPin className="w-5 h-5 text-[#ff9900] shrink-0 mt-0.5" />
-                <div>
-                  <h3 className="font-display text-lg font-bold text-white">
-                    {displayEventConfig.displayVenue}
-                  </h3>
-                  <p className="text-xs text-[#94a3b8] mt-0.5">
-                    {displayEventConfig.venueCity}, Maharashtra
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-sm text-[#94a3b8] leading-relaxed mb-6">
+            <div className="border-t border-white/15 pt-6 sm:pt-8 mb-8">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C24A70]">
+                Location Status
+              </span>
+              <h3 className="mt-3 text-2xl font-light text-[#F5F0EE] tracking-tight">
+                {displayEventConfig.displayVenue}
+              </h3>
+              <p className="mt-1 text-sm text-[#C2B6BA]/60 font-mono">
+                {displayEventConfig.venueCity}, Maharashtra
+              </p>
+              <p className="mt-4 text-sm font-light leading-relaxed text-[#C2B6BA]/80">
                 {displayEventConfig.displayAddress}
               </p>
 
-              <div className="pt-4 border-t border-white/10 space-y-2 text-xs font-mono text-[#94a3b8]">
-                <div>• Central campus auditorium in Amravati (TBA)</div>
-                <div>• Accessible via city bus routes &amp; shared autos</div>
-                <div>• Two-wheeler campus parking available</div>
+              <div className="mt-6 space-y-2 border-t border-white/10 pt-5 text-xs font-mono text-[#C2B6BA]/60">
+                <p>• Central college campus hall in Amravati (TBA)</p>
+                <p>• Accessible via municipal bus stops &amp; shared autos</p>
+                <p>• On-campus student two-wheeler parking available</p>
               </div>
             </div>
 
-            {/* Inquiries / Contact */}
-            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
-              <div className="flex items-center gap-2.5 mb-2">
-                <Mail className="w-4 h-4 text-[#ff9900]" />
-                <h4 className="font-display text-sm font-bold text-white">Student Questions?</h4>
-              </div>
-              <p className="text-xs text-[#94a3b8] leading-relaxed mb-3">
-                Have questions regarding demo slots, attendee check-in, or group registrations?
+            {/* Questions Helpdesk */}
+            <div className="border-t border-white/10 pt-6">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C2B6BA]/50">
+                Questions
+              </span>
+              <p className="mt-2 text-sm font-light text-[#C2B6BA]/80">
+                Need details regarding registration, college permissions, or project submissions?
               </p>
               <a
                 href={`mailto:${displayEventConfig.contactEmail}?subject=Amravati%20Watch%20and%20Build%20Query`}
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-[#ff9900] hover:underline font-semibold"
+                className="mt-3 inline-block text-xs font-mono uppercase tracking-[0.14em] text-[#F5F0EE] hover:text-[#C24A70] transition-colors"
               >
-                <span>{displayEventConfig.contactEmail}</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                {displayEventConfig.contactEmail} ↗
               </a>
             </div>
           </div>
 
-          {/* Frequently Asked Questions */}
-          <div className="lg:col-span-7">
-            <div className="text-xs font-mono uppercase tracking-widest text-[#ff9900] mb-3">
-              FAQ
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight mb-8">
-              Frequently Asked Questions.
+          {/* Right Column: Minimal Hairline Accordion */}
+          <div>
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#C2B6BA]/60 block mb-3">
+              Clarifications
+            </span>
+            <h2 className="text-4xl font-light tracking-[-0.06em] sm:text-5xl text-[#F5F0EE] mb-8">
+              Frequently Asked <span className="text-[#C24A70]">Questions.</span>
             </h2>
 
-            <div className="divide-y divide-white/10 border-y border-white/10" role="region" aria-label="FAQ Accordion">
-              {faqData.map((faq) => {
+            <div className="divide-y divide-white/10 border-y border-white/15" role="region" aria-label="FAQ Accordion">
+              {faqData.map((faq, index) => {
                 const isOpen = openId === faq.id;
                 return (
-                  <div key={faq.id} className="py-4">
+                  <div key={faq.id} className="py-5">
                     <h3>
                       <button
                         type="button"
@@ -93,13 +88,16 @@ export function VenueFaqSection() {
                         aria-expanded={isOpen}
                         aria-controls={`faq-answer-${faq.id}`}
                         onClick={() => toggleAccordion(faq.id)}
-                        className="w-full text-left flex items-center justify-between gap-4 py-1 text-white hover:text-[#ff9900] transition-colors focus:outline-none focus:ring-1 focus:ring-[#ff9900]"
+                        className="w-full text-left flex items-baseline justify-between gap-6 py-1 text-[#F5F0EE] hover:text-[#C24A70] transition-colors focus:outline-none focus:ring-1 focus:ring-[#F5F0EE]"
                       >
-                        <span className="font-display text-base sm:text-lg font-semibold">
-                          {faq.question}
+                        <span className="flex items-baseline gap-4 text-base sm:text-lg font-light tracking-tight">
+                          <span className="text-xs font-mono text-[#C2B6BA]/40 shrink-0">
+                            0{index + 1}
+                          </span>
+                          <span>{faq.question}</span>
                         </span>
                         <ChevronDown
-                          className={`w-4 h-4 text-[#ff9900] shrink-0 transition-transform duration-200 ${
+                          className={`w-4 h-4 text-[#C2B6BA] shrink-0 transition-transform duration-200 mt-1 ${
                             isOpen ? "rotate-180" : ""
                           }`}
                           aria-hidden="true"
@@ -112,7 +110,7 @@ export function VenueFaqSection() {
                         id={`faq-answer-${faq.id}`}
                         role="region"
                         aria-labelledby={`faq-btn-${faq.id}`}
-                        className="pt-2 pb-3 pr-6 text-sm text-[#94a3b8] leading-relaxed"
+                        className="pt-3 pb-2 pl-9 pr-4 text-sm font-light text-[#C2B6BA]/80 leading-relaxed max-w-xl"
                       >
                         <p>{faq.answer}</p>
                       </div>

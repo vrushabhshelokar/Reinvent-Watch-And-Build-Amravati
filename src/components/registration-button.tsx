@@ -18,7 +18,7 @@ export function RegistrationButton({
   placement,
   variant = "primary",
   size = "md",
-  label = "Register on Luma",
+  label = "Register Now",
   className = "",
   showIcon = true,
 }: RegistrationButtonProps) {
@@ -32,33 +32,34 @@ export function RegistrationButton({
   let variantClasses = "";
   switch (variant) {
     case "primary":
+      // Refined minimal outlined button matching reference
       variantClasses =
-        "bg-[#ff9900] hover:bg-[#ffaa22] text-black font-semibold tracking-wide border border-[#ffb84d] shadow-[0_2px_14px_rgba(255,153,0,0.3)] hover:shadow-[0_4px_20px_rgba(255,153,0,0.45)]";
+        "bg-transparent text-[#F5F0EE] border border-[#F5F0EE]/30 hover:border-[#F5F0EE] hover:bg-[#F5F0EE]/10 backdrop-blur-sm";
       break;
     case "secondary":
       variantClasses =
-        "bg-[#151822] hover:bg-[#1c202d] text-[#f8fafc] font-medium border border-white/15 hover:border-[#ff9900]/70";
+        "bg-[#160B10]/80 text-[#C2B6BA] border border-white/10 hover:border-white/25 hover:text-[#F5F0EE]";
       break;
     case "outline":
       variantClasses =
-        "bg-transparent hover:bg-white/[0.04] text-[#f8fafc] font-medium border border-white/20 hover:border-[#ff9900]";
+        "bg-transparent text-[#C2B6BA] border border-white/15 hover:border-[#F5F0EE]/40 hover:text-[#F5F0EE]";
       break;
     case "ghost":
       variantClasses =
-        "bg-transparent hover:bg-white/[0.05] text-[#94a3b8] hover:text-[#f8fafc]";
+        "bg-transparent text-[#C2B6BA] hover:text-[#F5F0EE]";
       break;
   }
 
   let sizeClasses = "";
   switch (size) {
     case "sm":
-      sizeClasses = "text-xs px-3.5 py-1.5 rounded-md font-mono";
+      sizeClasses = "text-[11px] px-4 py-2 font-mono uppercase tracking-[0.14em]";
       break;
     case "md":
-      sizeClasses = "text-xs sm:text-sm px-5 py-2.5 rounded-lg font-mono uppercase tracking-wider";
+      sizeClasses = "text-xs px-5 py-2.5 font-mono uppercase tracking-[0.14em]";
       break;
     case "lg":
-      sizeClasses = "text-sm sm:text-base px-7 py-3.5 rounded-xl font-mono uppercase tracking-wider font-bold";
+      sizeClasses = "text-xs sm:text-sm px-7 py-3.5 font-mono uppercase tracking-[0.16em] font-medium";
       break;
   }
 
@@ -68,13 +69,13 @@ export function RegistrationButton({
       onClick={handleClick}
       target={isReady ? "_blank" : undefined}
       rel={isReady ? "noopener noreferrer" : undefined}
-      aria-label={`${label} (opens official registration on Luma)`}
-      className={`group inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer ${variantClasses} ${sizeClasses} ${className}`}
+      aria-label={`${label} (opens registration on Luma)`}
+      className={`group inline-flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer ${variantClasses} ${sizeClasses} ${className}`}
     >
       <span>{label}</span>
       {showIcon && (
         <ArrowUpRight
-          className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
+          className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 opacity-80 group-hover:opacity-100"
           aria-hidden="true"
         />
       )}
