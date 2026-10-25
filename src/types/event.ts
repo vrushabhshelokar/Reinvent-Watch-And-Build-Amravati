@@ -73,6 +73,23 @@ export interface OrganizerMember {
   isConfirmed: boolean;
 }
 
+export interface CommitteeMember {
+  id: string;
+  name: string;
+  position: string;
+  college: string;
+  photo: string;
+  isPlaceholder?: boolean;
+}
+
+export interface GalleryPhoto {
+  id: string;
+  src: string;
+  alt: string;
+  caption?: string;
+  category?: string;
+}
+
 export interface PastHighlight {
   id: string;
   title: string;

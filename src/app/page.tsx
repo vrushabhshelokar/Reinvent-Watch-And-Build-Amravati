@@ -8,6 +8,7 @@ import { AgendaSection } from "@/components/agenda-section";
 import { CommunitySection } from "@/components/community-section";
 import { VenueFaqSection } from "@/components/venue-faq-section";
 import { RegistrationCTA } from "@/components/registration-cta";
+import { OrganizersSection } from "@/components/organizers-section";
 import { SiteFooter } from "@/components/site-footer";
 import { StickyRegisterBar } from "@/components/sticky-register-bar";
 import { DevValidationBadge } from "@/components/dev-validation-badge";
@@ -15,11 +16,11 @@ import { DevValidationBadge } from "@/components/dev-validation-badge";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Navigation Bar */}
+      {/* 1. Transparent Navigation Bar */}
       <SiteHeader />
 
       <main className="min-h-screen">
-        {/* 2. Video-Led Hero Section */}
+        {/* 2. Cinematic Video-Led Hero Section */}
         <HeroSection />
 
         {/* 3. Event Information Strip */}
@@ -28,13 +29,13 @@ export default function HomePage() {
         {/* 4. About the Event */}
         <AboutSection />
 
-        {/* 5. Why Attend / Benefits */}
+        {/* 5. Attendee Experience / Benefits */}
         <BenefitsSection />
 
         {/* 6. Event Agenda / Timeline */}
         <AgendaSection />
 
-        {/* 7. Community Collaboration */}
+        {/* 7. Community Collaboration & Past Event Gallery */}
         <CommunitySection />
 
         {/* 8. Venue and FAQ */}
@@ -42,9 +43,12 @@ export default function HomePage() {
 
         {/* 9. Final Registration CTA */}
         <RegistrationCTA />
+
+        {/* 10. Organizing Committee (Final content section before footer) */}
+        <OrganizersSection />
       </main>
 
-      {/* 10. Minimal Footer */}
+      {/* 11. Minimal Footer */}
       <SiteFooter />
 
       {/* Global Interface Elements */}

@@ -1,11 +1,55 @@
-import { OrganizerMember } from "@/types/event";
+import { CommitteeMember, OrganizerMember } from "@/types/event";
 
 export const organizingCommitteeConfig = {
   isRosterFinalized: false,
   rosterNote:
-    "Student organizing committee details are being verified with campus authorities and faculty liaisons. Official leads and team roles will be displayed upon formal approval.",
+    "Student organizing committee details are being verified with campus authorities. Official committee roster and student leads will be updated upon formal approval.",
 };
 
+/**
+ * Committee Members
+ * Reusable data structure for committee member cards.
+ * Uses clearly identified demo portraits and placeholder values until official details are finalized.
+ * Replace items below to update members without modifying layout components.
+ */
+export const committeeMembers: CommitteeMember[] = [
+  {
+    id: "lead-organizer",
+    name: "[Demo: Lead Organizer]",
+    position: "Lead Organizer & Event Director",
+    college: "Engineering College, Amravati",
+    photo: "/images/organizer-1.jpg",
+    isPlaceholder: true,
+  },
+  {
+    id: "tech-lead",
+    name: "[Demo: Technical Lead]",
+    position: "Cloud Tracks & Architecture Lead",
+    college: "Technology Institute, Amravati",
+    photo: "/images/organizer-2.jpg",
+    isPlaceholder: true,
+  },
+  {
+    id: "outreach-lead",
+    name: "[Demo: Community Outreach]",
+    position: "Campus Ambassador Coordinator",
+    college: "Polytechnic Campus, Amravati",
+    photo: "/images/organizer-3.jpg",
+    isPlaceholder: true,
+  },
+  {
+    id: "ops-lead",
+    name: "[Demo: Operations Lead]",
+    position: "Venue & Student Experience",
+    college: "University Department, Amravati",
+    photo: "/images/organizer-4.jpg",
+    isPlaceholder: true,
+  },
+];
+
+/**
+ * Backward-compatible provisional organizers roster
+ */
 export const provisionalOrganizers: OrganizerMember[] = [
   {
     id: "lead-org",
