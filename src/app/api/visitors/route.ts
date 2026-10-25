@@ -38,7 +38,7 @@ export async function GET() {
 
     return NextResponse.json(
       {
-        success: true,
+        success: stats.configured,
         totalVisits: stats.totalVisits,
         uniqueVisitors: stats.uniqueVisitors,
         configured: stats.configured,
@@ -58,8 +58,9 @@ export async function GET() {
         totalVisits: null,
         uniqueVisitors: null,
         configured: false,
+        storage: "none",
       },
-      { status: 500 }
+      { status: 200 }
     );
   }
 }
@@ -109,7 +110,7 @@ export async function POST(request: NextRequest) {
 
     const response = NextResponse.json(
       {
-        success: true,
+        success: stats.configured,
         totalVisits: stats.totalVisits,
         uniqueVisitors: stats.uniqueVisitors,
         configured: stats.configured,
@@ -157,8 +158,9 @@ export async function POST(request: NextRequest) {
         totalVisits: null,
         uniqueVisitors: null,
         configured: false,
+        storage: "none",
       },
-      { status: 500 }
+      { status: 200 }
     );
   }
 }

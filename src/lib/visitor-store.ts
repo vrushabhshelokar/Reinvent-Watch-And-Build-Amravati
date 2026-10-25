@@ -1,238 +1,193 @@
-import fs from "fs";
-import path from "path";
+import { Redis } from "@upstash/redis";
 
 export interface VisitorStats {
   totalVisits: number | null;
   uniqueVisitors: number | null;
   configured: boolean;
-  storage: "redis" | "file" | "none";
+  storage: "redis" | "none";
 }
 
-// In-process lock for file-based atomic transactions
-let fileLockPromise = Promise.resolve();
+const REDIS_TOTAL_KEY = "rwba:total_visits";
+const REDIS_UNIQUE_KEY = "rwba:unique_visitors";
 
-function getRedisConfig(): { url: string; token: string } | null {
-  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+// Initial baseline preserved from pre-migration records
+const PRE_MIGRATION_BASE = {
+  totalVisits: 31,
+  uniqueVisitors: [
+    "ecc575ce-0762-4b54-af66-600b279feac8",
+    "2a4bc990-aca8-4e88-8995-fd6e8d106add",
+    "test-concurrent-1792940528598",
+    "c77f0e00-8709-431d-b06a-6a283cc2b23d",
+    "6de2e7c7-897a-4712-accd-8ea64128da55",
+    "e387263a-19df-4d1c-8dd6-360b981fed7e",
+    "fadf1c5d-2970-4067-95b9-6033d795fc10",
+    "d93d88c0-bc77-4050-948b-37e924bcba8a",
+    "0ebeed6e-88f9-41cd-937a-58a2782df568",
+    "0cbd5754-3127-4b12-886e-17830b7a5720",
+    "5e69403d-acd9-4575-9dae-4b3a1a228144",
+    "883537b9-9fcb-4bd7-86c2-8234be7d5a9b",
+    "05b45f2a-04a4-4020-b7f6-f315ed84fefd",
+    "1af28f94-4b00-4551-9c61-109775e69f3d",
+    "36d6110d-5615-44bb-bd0f-4949c22707bf",
+  ],
+};
+
+let hasAttemptedSeed = false;
+
+/**
+ * Resolves an Upstash Redis client using standard Vercel Marketplace
+ * environment variables (UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN)
+ * or Vercel KV environment variables (KV_REST_API_URL / KV_REST_API_TOKEN).
+ */
+export function getRedisClient(): Redis | null {
+  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
 
   if (url && token) {
-    return { url: url.replace(/\/$/, ""), token };
+    try {
+      return new Redis({ url, token });
+    } catch (err) {
+      console.error("[VisitorStore] Error creating Redis instance:", err);
+      return null;
+    }
   }
+
   return null;
 }
 
 /**
- * Executes a REST command or pipeline against Upstash / Vercel KV
+ * Seeds pre-migration baseline data if keys are newly created in Redis.
+ * Uses atomic SETNX so existing production values are never overwritten.
  */
-async function executeRedisPipeline(
-  commands: (string | number)[][],
-  config: { url: string; token: string }
-): Promise<Array<{ result?: unknown; error?: string }>> {
-  const response = await fetch(`${config.url}/pipeline`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${config.token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(commands),
-    cache: "no-store",
-  });
+async function ensureSeeded(redis: Redis): Promise<void> {
+  if (hasAttemptedSeed) return;
+  hasAttemptedSeed = true;
 
-  if (!response.ok) {
-    throw new Error(`Redis pipeline failed: ${response.status} ${response.statusText}`);
-  }
-
-  return response.json();
-}
-
-/**
- * File-backed persistent storage implementation (for local development & testing)
- */
-interface FileStorageData {
-  totalVisits: number;
-  uniqueVisitors: string[];
-}
-
-function getLocalDataFilePath(): string {
-  const dataDir = path.join(process.cwd(), ".data");
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  return path.join(dataDir, "visitor-stats.json");
-}
-
-function readLocalData(): FileStorageData {
-  const filePath = getLocalDataFilePath();
-  if (!fs.existsSync(filePath)) {
-    return { totalVisits: 0, uniqueVisitors: [] };
-  }
   try {
-    const raw = fs.readFileSync(filePath, "utf-8");
-    const parsed = JSON.parse(raw);
-    return {
-      totalVisits: typeof parsed.totalVisits === "number" ? parsed.totalVisits : 0,
-      uniqueVisitors: Array.isArray(parsed.uniqueVisitors) ? parsed.uniqueVisitors : [],
-    };
-  } catch {
-    return { totalVisits: 0, uniqueVisitors: [] };
+    // setnx only sets if key does not exist
+    await redis.setnx(REDIS_TOTAL_KEY, PRE_MIGRATION_BASE.totalVisits);
+    if (PRE_MIGRATION_BASE.uniqueVisitors.length > 0) {
+      const [first, ...rest] = PRE_MIGRATION_BASE.uniqueVisitors;
+      await redis.sadd(REDIS_UNIQUE_KEY, first, ...rest);
+    }
+  } catch (err) {
+    console.warn("[VisitorStore] Pre-migration seed check warning:", err);
   }
-}
-
-function writeLocalData(data: FileStorageData): void {
-  const filePath = getLocalDataFilePath();
-  const tempPath = `${filePath}.${Date.now()}.${Math.random().toString(36).substring(2, 8)}.tmp`;
-  fs.writeFileSync(tempPath, JSON.stringify(data, null, 2), "utf-8");
-  fs.renameSync(tempPath, filePath);
 }
 
 /**
  * Reads current visitor counts without incrementing (Idempotent / Read-only)
  */
 export async function getVisitorCounts(): Promise<VisitorStats> {
-  const redis = getRedisConfig();
+  const redis = getRedisClient();
 
-  if (redis) {
-    try {
-      const results = await executeRedisPipeline(
-        [
-          ["GET", "rwba:total_visits"],
-          ["SCARD", "rwba:unique_visitors"],
-        ],
-        redis
-      );
-
-      const rawTotal = results[0]?.result;
-      const rawUnique = results[1]?.result;
-
-      const totalVisits = rawTotal !== null && rawTotal !== undefined ? Number(rawTotal) : 0;
-      const uniqueVisitors = rawUnique !== null && rawUnique !== undefined ? Number(rawUnique) : 0;
-
-      return {
-        totalVisits,
-        uniqueVisitors,
-        configured: true,
-        storage: "redis",
-      };
-    } catch (err) {
-      console.error("[VisitorStore] Redis read error:", err);
-    }
-  }
-
-  // Local development / fallback
-  if (process.env.NODE_ENV !== "production" || !redis) {
-    const data = readLocalData();
+  if (!redis) {
     return {
-      totalVisits: data.totalVisits,
-      uniqueVisitors: data.uniqueVisitors.length,
-      configured: true,
-      storage: "file",
+      totalVisits: null,
+      uniqueVisitors: null,
+      configured: false,
+      storage: "none",
     };
   }
 
-  return {
-    totalVisits: null,
-    uniqueVisitors: null,
-    configured: false,
-    storage: "none",
-  };
+  try {
+    await ensureSeeded(redis);
+
+    const pipeline = redis.pipeline();
+    pipeline.get(REDIS_TOTAL_KEY);
+    pipeline.scard(REDIS_UNIQUE_KEY);
+    const [rawTotal, rawUnique] = await pipeline.exec<[unknown, number]>();
+
+    const totalVisits = rawTotal !== null && rawTotal !== undefined ? Number(rawTotal) : 0;
+    const uniqueVisitors = rawUnique !== null && rawUnique !== undefined ? Number(rawUnique) : 0;
+
+    return {
+      totalVisits,
+      uniqueVisitors,
+      configured: true,
+      storage: "redis",
+    };
+  } catch (err) {
+    console.error("[VisitorStore] Redis read error:", err);
+    return {
+      totalVisits: null,
+      uniqueVisitors: null,
+      configured: false,
+      storage: "none",
+    };
+  }
 }
 
 /**
- * Records a page visit with atomic total & unique counting
+ * Records a page visit with atomic total & unique counting in Redis
  *
  * @param visitorId Persistent opaque identifier (from rwba_vid cookie)
- * @param isNewSession Boolean indicating if this is a fresh session (true) or refresh/same session (false)
+ * @param isNewSession Boolean indicating whether this is a fresh visit session (true) or same-session refresh (false)
  */
 export async function recordVisitor(
   visitorId: string,
   isNewSession: boolean
 ): Promise<{ stats: VisitorStats; isNewUnique: boolean; isNewVisit: boolean }> {
-  const redis = getRedisConfig();
+  const redis = getRedisClient();
 
-  if (redis) {
-    try {
-      const commands: (string | number)[][] = [];
-
-      // 1. Check & Add to unique set (atomic SADD)
-      commands.push(["SADD", "rwba:unique_visitors", visitorId]);
-
-      // 2. Increment total visits only if fresh visit session
-      if (isNewSession) {
-        commands.push(["INCR", "rwba:total_visits"]);
-      } else {
-        commands.push(["GET", "rwba:total_visits"]);
-      }
-
-      // 3. Get total unique count
-      commands.push(["SCARD", "rwba:unique_visitors"]);
-
-      const results = await executeRedisPipeline(commands, redis);
-
-      const saddResult = Number(results[0]?.result ?? 0);
-      const isNewUnique = saddResult === 1;
-
-      const rawTotal = results[1]?.result;
-      const totalVisits = rawTotal !== null && rawTotal !== undefined ? Number(rawTotal) : 0;
-
-      const rawUnique = results[2]?.result;
-      const uniqueVisitors = rawUnique !== null && rawUnique !== undefined ? Number(rawUnique) : 0;
-
-      return {
-        stats: {
-          totalVisits,
-          uniqueVisitors,
-          configured: true,
-          storage: "redis",
-        },
-        isNewUnique,
-        isNewVisit: isNewSession,
-      };
-    } catch (err) {
-      console.error("[VisitorStore] Redis record error:", err);
-    }
+  if (!redis) {
+    return {
+      stats: {
+        totalVisits: null,
+        uniqueVisitors: null,
+        configured: false,
+        storage: "none",
+      },
+      isNewUnique: false,
+      isNewVisit: false,
+    };
   }
 
-  // Local development / file storage mode with mutex serialization
-  return new Promise((resolve) => {
-    fileLockPromise = fileLockPromise
-      .then(async () => {
-        const data = readLocalData();
-        const isNewUnique = !data.uniqueVisitors.includes(visitorId);
+  try {
+    await ensureSeeded(redis);
 
-        if (isNewUnique) {
-          data.uniqueVisitors.push(visitorId);
-        }
+    const pipeline = redis.pipeline();
 
-        if (isNewSession) {
-          data.totalVisits += 1;
-        }
+    // 1. Atomically add to unique set (returns 1 if new, 0 if already existed)
+    pipeline.sadd(REDIS_UNIQUE_KEY, visitorId);
 
-        if (isNewUnique || isNewSession) {
-          writeLocalData(data);
-        }
+    // 2. Increment total visits only if fresh visit session (prevents refresh inflation)
+    if (isNewSession) {
+      pipeline.incr(REDIS_TOTAL_KEY);
+    } else {
+      pipeline.get(REDIS_TOTAL_KEY);
+    }
 
-        resolve({
-          stats: {
-            totalVisits: data.totalVisits,
-            uniqueVisitors: data.uniqueVisitors.length,
-            configured: true,
-            storage: "file",
-          },
-          isNewUnique,
-          isNewVisit: isNewSession,
-        });
-      })
-      .catch(() => {
-        resolve({
-          stats: {
-            totalVisits: null,
-            uniqueVisitors: null,
-            configured: false,
-            storage: "none",
-          },
-          isNewUnique: false,
-          isNewVisit: false,
-        });
-      });
-  });
+    // 3. Atomically query total unique visitors count
+    pipeline.scard(REDIS_UNIQUE_KEY);
+
+    const [saddResult, rawTotal, rawUnique] = await pipeline.exec<[number, unknown, number]>();
+
+    const isNewUnique = Number(saddResult ?? 0) === 1;
+    const totalVisits = rawTotal !== null && rawTotal !== undefined ? Number(rawTotal) : 0;
+    const uniqueVisitors = rawUnique !== null && rawUnique !== undefined ? Number(rawUnique) : 0;
+
+    return {
+      stats: {
+        totalVisits,
+        uniqueVisitors,
+        configured: true,
+        storage: "redis",
+      },
+      isNewUnique,
+      isNewVisit: isNewSession,
+    };
+  } catch (err) {
+    console.error("[VisitorStore] Redis record error:", err);
+    return {
+      stats: {
+        totalVisits: null,
+        uniqueVisitors: null,
+        configured: false,
+        storage: "none",
+      },
+      isNewUnique: false,
+      isNewVisit: false,
+    };
+  }
 }
