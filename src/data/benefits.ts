@@ -21,9 +21,16 @@ export const benefitsData: MinimalBenefit[] = [
       "Watch curated re:Invent keynote announcements and dissect real-world architectures, serverless systems, and cloud fundamentals.",
   },
   {
-    id: "builder-network",
+    id: "aws-swags",
     number: "03",
-    title: "Student Builder Network",
+    title: "AWS Goodies And Swags",
+    description:
+      "Get AWS goodies that will make you feel like a cloud architect",
+  },
+  {
+    id: "networking-and-discussion",
+    number: "04",
+    title: "Networking And Discussion",
     description:
       "Meet fellow developers, find hackathon teammates, and connect with student builder groups across regional colleges.",
   },

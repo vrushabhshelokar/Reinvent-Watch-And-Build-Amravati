@@ -3,7 +3,7 @@ import { CommunityGroup } from "@/types/event";
 export const communitiesData: CommunityGroup[] = [
   {
     id: "aws-sbg-amravati",
-    name: "AWS Student Builder Group — Amravati",
+    name: "AWS Student Builder Group of Sipna College of Engineering and Technology - Amravati",
     role: "Organizing Group",
     description:
       "A student-led tech initiative bringing peer-to-peer cloud learning, hands-on workshops, and collaborative tech events to students in Amravati.",

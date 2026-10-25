@@ -6,7 +6,7 @@ import { EventConfig } from "@/types/event";
  * Do not replace these with invented values until organizers supply verified details.
  */
 export const rawEventConfig: EventConfig = {
-  name: "Reinvent Watch And Build — Amravati",
+  name: "Reinvent Watch And Build - Amravati",
   shortName: "re:Invent Watch & Build",
   edition: "Amravati Edition",
   locationLabel: "Amravati, Maharashtra",
@@ -15,16 +15,16 @@ export const rawEventConfig: EventConfig = {
     "A student-focused gathering to explore cloud technology, learn from re:Invent announcements, and connect with fellow builders in Amravati.",
   entryFee: 0,
   entryFeeLabel: "Free Entry · ₹0",
-  date: "[CONFIRM: EVENT_DATE]",
-  startTime: "[CONFIRM: EVENT_START_TIME]",
-  endTime: "[CONFIRM: EVENT_END_TIME]",
+  date: "29th November 2026",
+  startTime: "11AM",
+  endTime: "3PM",
   timeZone: "Asia/Kolkata",
-  timeDisplay: "[CONFIRM: EVENT_START_TIME / END_TIME]",
-  venueName: "[CONFIRM: VENUE_NAME]",
-  venueAddress: "[CONFIRM: FULL_ADDRESS]",
+  timeDisplay: "11AM - 3PM",
+  venueName: "Auditorium Hall, Sipna College of Engineering and Technology",
+  venueAddress: "Amravati, Maharashtra",
   venueCity: "Amravati, Maharashtra",
-  format: "[CONFIRM: IN-PERSON / HYBRID]",
-  lumaUrl: process.env.NEXT_PUBLIC_LUMA_URL || "[CONFIRM: LUMA_REGISTRATION_URL]",
+  format: "IN-PERSON",
+  lumaUrl: "https://luma.com/?locale=en-IN",
   productionUrl: process.env.NEXT_PUBLIC_SITE_URL || "[CONFIRM: PRODUCTION_DOMAIN]",
   contactEmail: "organizers.amravati@gmail.com",
   socials: {

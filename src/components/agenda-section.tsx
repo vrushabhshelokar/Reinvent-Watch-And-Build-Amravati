@@ -59,21 +59,7 @@ export function AgendaSection() {
           ))}
         </div>
 
-        {/* Student Demo Callout */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <h4 className="text-base font-light text-[#F5F0EE]">Have an undergraduate project to demo?</h4>
-            <p className="text-xs text-[#C2B6BA]/70 mt-1 font-light">
-              The Student Demo Arena invites collegiate builders to present 5-minute technical walkthroughs.
-            </p>
-          </div>
-          <a
-            href="mailto:organizers.amravati@gmail.com?subject=Student%20Demo%20Arena%20Proposal"
-            className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.14em] text-[#F5F0EE] hover:text-[#C24A70] transition-colors shrink-0"
-          >
-            <span>Submit Demo ↗</span>
-          </a>
-        </div>
+        
       </div>
     </section>
   );

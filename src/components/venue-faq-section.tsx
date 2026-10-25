@@ -43,10 +43,35 @@ export function VenueFaqSection() {
                 {displayEventConfig.displayAddress}
               </p>
 
+              <div className="mt-6 overflow-hidden rounded-lg border border-white/10">
+  <iframe
+    src={`https://www.google.com/maps?q=${encodeURIComponent(
+      `${displayEventConfig.displayVenue}, ${displayEventConfig.displayAddress}, ${displayEventConfig.venueCity}, Maharashtra`
+    )}&output=embed`}
+    width="100%"
+    height="240"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Google Maps Location"
+    className="block w-full grayscale-[20%] opacity-90"
+  />
+  <a
+    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      `${displayEventConfig.displayVenue}, ${displayEventConfig.displayAddress}, ${displayEventConfig.venueCity}, Maharashtra`
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block border-t border-white/10 px-4 py-3 text-xs font-mono text-[#C2B6BA]/80 transition-colors hover:text-[#C24A70]"
+  >
+    OPEN IN GOOGLE MAPS ↗
+  </a>
+</div>
+
               <div className="mt-6 space-y-2 border-t border-white/10 pt-5 text-xs font-mono text-[#C2B6BA]/60">
                 <p>• Central college campus hall in Amravati (TBA)</p>
                 <p>• Accessible via municipal bus stops &amp; shared autos</p>
-                <p>• On-campus student two-wheeler parking available</p>
               </div>
             </div>
 
