@@ -34,25 +34,54 @@ const PRE_MIGRATION_BASE = {
 
 let hasAttemptedSeed = false;
 
+function cleanEnvString(val: string | undefined): string | null {
+  if (!val) return null;
+  const trimmed = val.trim().replace(/^["']|["']$/g, "");
+  return trimmed.length > 0 ? trimmed : null;
+}
+
 /**
  * Resolves an Upstash Redis client using standard Vercel Marketplace
  * environment variables (UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN)
  * or Vercel KV environment variables (KV_REST_API_URL / KV_REST_API_TOKEN).
  */
 export function getRedisClient(): Redis | null {
-  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+  const url =
+    cleanEnvString(process.env.UPSTASH_REDIS_REST_URL) ||
+    cleanEnvString(process.env.KV_REST_API_URL) ||
+    cleanEnvString(process.env.VERCEL_KV_REST_API_URL);
 
-  if (url && token) {
-    try {
-      return new Redis({ url, token });
-    } catch (err) {
-      console.error("[VisitorStore] Error creating Redis instance:", err);
-      return null;
+  const token =
+    cleanEnvString(process.env.UPSTASH_REDIS_REST_TOKEN) ||
+    cleanEnvString(process.env.KV_REST_API_TOKEN) ||
+    cleanEnvString(process.env.VERCEL_KV_REST_API_TOKEN);
+
+  if (!url || !token) {
+    if (process.env.NODE_ENV === "development") {
+      console.warn(
+        `[VisitorStore] Redis credentials missing. urlPresent: ${Boolean(url)}, tokenPresent: ${Boolean(token)}`
+      );
     }
+    return null;
   }
 
-  return null;
+  // Ensure REST URL is a valid HTTP(S) endpoint for @upstash/redis
+  if (!url.startsWith("https://") && !url.startsWith("http://")) {
+    console.error(
+      `[VisitorStore] Invalid Redis REST URL protocol. Must start with https:// or http://, got: ${url.slice(0, 8)}...`
+    );
+    return null;
+  }
+
+  try {
+    return new Redis({ url, token });
+  } catch (err) {
+    console.error(
+      "[VisitorStore] Error creating Redis instance:",
+      err instanceof Error ? err.message : String(err)
+    );
+    return null;
+  }
 }
 
 /**
@@ -98,8 +127,14 @@ export async function getVisitorCounts(): Promise<VisitorStats> {
     pipeline.scard(REDIS_UNIQUE_KEY);
     const [rawTotal, rawUnique] = await pipeline.exec<[unknown, number]>();
 
-    const totalVisits = rawTotal !== null && rawTotal !== undefined ? Number(rawTotal) : 0;
-    const uniqueVisitors = rawUnique !== null && rawUnique !== undefined ? Number(rawUnique) : 0;
+    const totalVisits =
+      rawTotal !== null && rawTotal !== undefined && !Number.isNaN(Number(rawTotal))
+        ? Number(rawTotal)
+        : 0;
+    const uniqueVisitors =
+      rawUnique !== null && rawUnique !== undefined && !Number.isNaN(Number(rawUnique))
+        ? Number(rawUnique)
+        : 0;
 
     return {
       totalVisits,
@@ -164,8 +199,14 @@ export async function recordVisitor(
     const [saddResult, rawTotal, rawUnique] = await pipeline.exec<[number, unknown, number]>();
 
     const isNewUnique = Number(saddResult ?? 0) === 1;
-    const totalVisits = rawTotal !== null && rawTotal !== undefined ? Number(rawTotal) : 0;
-    const uniqueVisitors = rawUnique !== null && rawUnique !== undefined ? Number(rawUnique) : 0;
+    const totalVisits =
+      rawTotal !== null && rawTotal !== undefined && !Number.isNaN(Number(rawTotal))
+        ? Number(rawTotal)
+        : 0;
+    const uniqueVisitors =
+      rawUnique !== null && rawUnique !== undefined && !Number.isNaN(Number(rawUnique))
+        ? Number(rawUnique)
+        : 0;
 
     return {
       stats: {
