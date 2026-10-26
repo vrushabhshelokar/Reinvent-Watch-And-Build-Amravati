@@ -11,26 +11,29 @@ export function HeroSection() {
     const video = videoRef.current;
     if (!video) return;
 
-    // 1. Explicitly enforce muted properties on the DOM node for browser autoplay policies
+    // 1. Explicitly enforce muted and playsinline properties for browser autoplay policies
     video.defaultMuted = true;
     video.muted = true;
+    video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
 
-    // 2. Attempt playback with promise error handling
+    // 2. Playback handler with promise error handling
     const startPlayback = () => {
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise.catch((error) => {
-          // Autoplay was blocked or deferred by browser policy (e.g., low power mode, background tab)
           console.warn("[HeroSection] Video autoplay deferred by browser:", error?.message || error);
         });
       }
     };
 
+    // Attempt playback immediately and on media ready events
     startPlayback();
+    video.addEventListener("canplay", startPlayback, { once: true });
+    video.addEventListener("loadeddata", startPlayback, { once: true });
 
-    // 3. Fallback: If autoplay was deferred (e.g. mobile battery saver), start on first user interaction
+    // 3. Desktop and mobile interaction fallback
     const handleFirstInteraction = () => {
       if (video && video.paused) {
         video.play().catch(() => {});
@@ -40,15 +43,23 @@ export function HeroSection() {
 
     const cleanupListeners = () => {
       window.removeEventListener("touchstart", handleFirstInteraction);
+      window.removeEventListener("pointerdown", handleFirstInteraction);
+      window.removeEventListener("mousemove", handleFirstInteraction);
       window.removeEventListener("scroll", handleFirstInteraction);
       window.removeEventListener("click", handleFirstInteraction);
+      window.removeEventListener("keydown", handleFirstInteraction);
     };
 
     window.addEventListener("touchstart", handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener("pointerdown", handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener("mousemove", handleFirstInteraction, { passive: true, once: true });
     window.addEventListener("scroll", handleFirstInteraction, { passive: true, once: true });
     window.addEventListener("click", handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener("keydown", handleFirstInteraction, { passive: true, once: true });
 
     return () => {
+      video.removeEventListener("canplay", startPlayback);
+      video.removeEventListener("loadeddata", startPlayback);
       cleanupListeners();
     };
   }, []);
@@ -61,12 +72,6 @@ export function HeroSection() {
     >
       {/* Full-bleed Background Video Layer */}
       <div className="absolute inset-0 -z-30 w-full h-full overflow-hidden" aria-hidden="true">
-        {/* Reduced motion static fallback */}
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center hidden motion-reduce:block opacity-35"
-          style={{ backgroundImage: "url('/images/hero-poster.jpg')" }}
-        />
-
         {/* Video Element */}
         <video
           ref={videoRef}
@@ -74,13 +79,12 @@ export function HeroSection() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/images/hero-poster.jpg"
           disablePictureInPicture
           disableRemotePlayback
-          className="h-full w-full object-cover object-center motion-reduce:hidden opacity-35 sm:opacity-40 scale-105 pointer-events-none select-none"
+          className="h-full w-full object-cover object-center opacity-35 sm:opacity-40 scale-105 pointer-events-none select-none"
         >
-          <source src="/videos/hero_background.webm" type="video/webm" />
           <source src="/videos/hero_background.mp4" type="video/mp4" />
         </video>
       </div>
