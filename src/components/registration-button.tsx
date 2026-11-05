@@ -69,7 +69,7 @@ export function RegistrationButton({
       onClick={handleClick}
       target={isReady ? "_blank" : undefined}
       rel={isReady ? "noopener noreferrer" : undefined}
-      aria-label={`${label} (opens registration on Luma)`}
+      aria-label={`${label} (opens registration)`}
       className={`group inline-flex items-center justify-center gap-2.5 transition-all duration-300 cursor-pointer ${variantClasses} ${sizeClasses} ${className}`}
     >
       <span>{label}</span>

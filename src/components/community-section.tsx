@@ -26,46 +26,18 @@ export function CommunitySection() {
           </p>
         </div>
 
-        {/* Reference-Style Structured Groups Grid */}
+        {/* Collaborating Groups Grid */}
         <div className="grid border-t border-white/15 sm:grid-cols-3 mb-12 sm:mb-20">
           {communitiesData.map((community, index) => (
             <div
               key={community.id}
-              className={`group flex min-h-36 sm:min-h-40 flex-col justify-between border-b border-white/15 px-4 py-6 transition-colors duration-300 hover:bg-white/[0.02] sm:px-8 sm:py-10 ${
+              className={`group flex min-h-36 sm:min-h-40 flex-col justify-center border-b border-white/15 px-4 py-6 transition-colors duration-300 hover:bg-white/[0.02] sm:px-8 sm:py-10 ${
                 index > 0 ? "sm:border-l" : ""
               }`}
             >
-              <div>
-                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C2B6BA]/50">
-                  {community.role}
-                </span>
-                <div className="mt-3 sm:mt-4 flex items-center justify-between gap-4">
-                  <h3 className="text-base sm:text-xl font-light text-[#F5F0EE] group-hover:text-white tracking-tight leading-snug">
-                    {community.name}
-                  </h3>
-                  <span className="text-[#C24A70] transition-transform duration-300 group-hover:translate-x-1 shrink-0">
-                    ↗
-                  </span>
-                </div>
-                <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm font-light text-[#C2B6BA]/70 leading-relaxed">
-                  {community.description}
-                </p>
-              </div>
-
-              <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-white/5 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#C2B6BA]/40">
-                <span>Status: {community.status}</span>
-                {community.link && (
-                  <a
-                    href={community.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-[#F5F0EE] transition-colors py-1"
-                    aria-label={`Visit ${community.name}`}
-                  >
-                    Details ↗
-                  </a>
-                )}
-              </div>
+              <h3 className="text-base sm:text-xl font-light text-[#F5F0EE] group-hover:text-white tracking-tight leading-snug">
+                {community.name}
+              </h3>
             </div>
           ))}
         </div>

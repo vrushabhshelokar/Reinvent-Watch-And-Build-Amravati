@@ -21,7 +21,7 @@ export function EventInfoStrip() {
     {
       label: "ADMISSION",
       value: "₹0 Free",
-      detail: "Advance Luma registration required",
+      detail: "Advance registration required",
     },
   ];
 

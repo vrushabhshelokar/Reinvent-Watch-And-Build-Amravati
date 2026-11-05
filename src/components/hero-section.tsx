@@ -109,7 +109,7 @@ export function HeroSection() {
         <div className="max-w-4xl text-left">
           {/* Eyebrow */}
           <p className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] sm:tracking-[0.24em] text-[#C2B6BA]/85 mb-4 sm:mb-8">
-            AMRAVATI · STUDENT TECHNOLOGY EVENT
+            · AMRAVATI  
           </p>
 
           {/* Main Headline */}
@@ -120,7 +120,7 @@ export function HeroSection() {
 
           {/* Supporting Copy */}
           <p className="max-w-xl text-sm sm:text-lg font-light leading-relaxed text-[#C2B6BA] mb-3 sm:mb-4">
-            Explore cloud technology, dissect production architectures, and connect with the student developer community.
+            
           </p>
 
           {/* Minimal Event Coordinates */}

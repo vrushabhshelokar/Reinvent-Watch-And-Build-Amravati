@@ -15,7 +15,7 @@ export const rawEventConfig: EventConfig = {
     "A student-focused gathering to explore cloud technology, learn from re:Invent announcements, and connect with fellow builders in Amravati.",
   entryFee: 0,
   entryFeeLabel: "Free Entry · ₹0",
-  date: "29th November 2026",
+  date: "29th-30th November 2026",
   startTime: "11AM",
   endTime: "3PM",
   timeZone: "Asia/Kolkata",

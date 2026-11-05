@@ -83,7 +83,7 @@ export function SiteFooter() {
 
         {/* Non-Affiliation Legal Disclaimer */}
         <p className="mt-4 sm:mt-5 max-w-3xl text-[10px] sm:text-[11px] leading-relaxed sm:leading-5 text-[#C2B6BA]/40 font-mono">
-          Reinvent Watch And Build — Amravati is an independent, student-led community gathering inspired by AWS re:Invent. It is not an official Amazon Web Services conference, sponsorship, or corporate program. AWS and re:Invent are trademarks of Amazon.com, Inc. or its affiliates.
+          Reinvent Watch And Build — Amravati is an independent, student-led community gathering inspired by AWS re:Invent.
         </p>
 
                 {/* Developer Credit */}

@@ -43,7 +43,7 @@ export function AboutSection() {
                 Student Builders of Amravati
               </h3>
               <p className="mt-3 sm:mt-4 text-xs sm:text-base font-light leading-relaxed text-[#C2B6BA]">
-                We are a student-led developer network uniting peers across colleges in Amravati. Our goal is straightforward: help students move beyond generic tutorials, experiment with cloud infrastructure, and turn classroom theory into working software.
+                We are a student-led developer network uniting peers across colleges in Amravati. Our goal is straightforward: help students, Developer, Tech Enthusiasts move beyond generic tutorials, experiment with cloud infrastructure, and turn classroom theory into working software.
               </p>
             </div>
 

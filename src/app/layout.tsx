@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Reinvent Watch And Build Amravati | Student Cloud Community Event",
   description:
-    "Join Reinvent Watch And Build in Amravati, a student-focused event for cloud learning and developer connections. Check the confirmed agenda and register through Luma.",
+    "Join Reinvent Watch And Build in Amravati, a student-focused event for cloud learning and developer connections. Check the confirmed agenda.",
   applicationName: "Reinvent Watch And Build — Amravati",
   authors: [{ name: "Amravati Student Builder Community" }],
   keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "Amravati student tech",
     "Cloud computing students",
     "Vidarbha developers",
-    "Luma event registration",
+    "Event registration",
     "Student cloud meetups",
   ],
   alternates: {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Reinvent Watch And Build Amravati | Student Cloud Community Event",
     description:
-      "Join Reinvent Watch And Build in Amravati, a student-focused event for cloud learning and developer connections. Check the confirmed agenda and register through Luma.",
+      "Join Reinvent Watch And Build in Amravati, a student-focused event for cloud learning and developer connections. Check the confirmed agenda.",
     url: siteUrl,
     siteName: "Reinvent Watch And Build — Amravati",
     locale: "en_IN",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Reinvent Watch And Build Amravati | Student Cloud Community Event",
     description:
-      "Join Reinvent Watch And Build in Amravati, a student-focused event for cloud learning and developer connections. Check the confirmed agenda and register through Luma.",
+      "Join Reinvent Watch And Build in Amravati, a student-focused event for cloud learning and developer connections. Check the confirmed agenda.",
     images: ["/og-image.jpg"],
   },
   robots: {

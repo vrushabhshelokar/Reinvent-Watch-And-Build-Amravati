@@ -5,7 +5,7 @@ export const faqData: FaqItem[] = [
     id: "eligibility",
     question: "Who can attend Reinvent Watch And Build — Amravati?",
     answer:
-      "The event is designed specifically for college and university students in and around Amravati. Whether you are in your first year or final year, and whether you are new to cloud computing or already building applications, you are welcome to attend.",
+      "The event is designed specifically for college and university students, Developers, tech enthusiasts in and around Amravati. Whether you are in your first year or final year, and whether you are new to cloud computing or already building applications, you are welcome to attend.",
     category: "General",
   },
   {

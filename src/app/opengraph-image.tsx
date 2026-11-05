@@ -92,7 +92,7 @@ export default async function Image() {
               fontWeight: 300,
             }}
           >
-            Explore cloud technology, build new skills, and connect with the student developer community.
+            
           </div>
         </div>
 
@@ -108,7 +108,7 @@ export default async function Image() {
         >
           <div style={{ display: "flex", alignItems: "center" }}>
             <span style={{ fontSize: "16px", color: "#C2B6BA", marginRight: "32px" }}>
-              Amravati · Student Technology Event
+              · Amravati
             </span>
             <span style={{ fontSize: "16px", color: "#F5F0EE" }}>
               100% Free Entry
@@ -125,7 +125,7 @@ export default async function Image() {
               fontWeight: 600,
             }}
           >
-            Register on Luma ↗
+            Register ↗
           </div>
         </div>
       </div>

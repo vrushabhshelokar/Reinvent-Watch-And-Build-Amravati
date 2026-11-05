@@ -24,14 +24,14 @@ export function RegistrationCTA() {
         </h2>
 
         <p className="max-w-xl text-sm sm:text-lg font-light leading-relaxed text-[#C2B6BA]/80 mb-8 sm:mb-10">
-          Admission is completely free for all enrolled college and university students. Reserve your spot on Luma before auditorium capacity is reached.
+          Registration is completely free for all enrolled college and university students. Reserve your spot before auditorium capacity is reached.
         </p>
 
         <div className="w-full sm:w-auto">
           <RegistrationButton
             placement="final_cta"
             size="lg"
-            label="Register on Luma"
+            label="Register"
             className="w-full sm:w-auto"
           />
         </div>

@@ -68,9 +68,9 @@ export function SiteHeader() {
             onClick={() => setMobileMenuOpen(false)}
           >
             <span className="flex flex-col leading-none">
-              <span className="mb-0.5 sm:mb-1 text-[8px] sm:text-[9px] font-medium uppercase tracking-[0.22em] sm:tracking-[0.24em] text-[#C2B6BA]/70">
+              {/* <span className="mb-0.5 sm:mb-1 text-[8px] sm:text-[9px] font-medium uppercase tracking-[0.22em] sm:tracking-[0.24em] text-[#C2B6BA]/70">
                 Student Technology Event
-              </span>
+              </span> */}
               <span className="text-[20px] sm:text-[26px] font-light tracking-[-0.05em] text-[#F5F0EE]">
                 re<span className="text-[#C24A70]">:</span>Invent
               </span>
@@ -148,7 +148,7 @@ export function SiteHeader() {
               <RegistrationButton
                 placement="navbar"
                 size="lg"
-                label="Register on Luma ↗"
+                label="Register ↗"
                 className="w-full justify-center"
               />
             </div>
