@@ -57,7 +57,7 @@ export interface AgendaSession {
 export interface CommunityGroup {
   id: string;
   name: string;
-  role: "Organizing Group" | "Community Partner" | "Student Tech Club";
+  role: "Organizing Group" | "Community Partner" | "Student Tech Club" | "Gold Sponsor" | "Silver Sponsor";
   description: string;
   link?: string;
   status: "Confirmed" | "Invited / In Discussion";
