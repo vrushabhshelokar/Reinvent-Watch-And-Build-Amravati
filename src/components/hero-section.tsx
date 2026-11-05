@@ -83,20 +83,20 @@ export function HeroSection() {
           poster="/images/hero-poster.jpg"
           disablePictureInPicture
           disableRemotePlayback
-          className="h-full w-full object-cover object-center opacity-35 sm:opacity-40 scale-105 pointer-events-none select-none"
+          className="h-full w-full object-cover object-center opacity-60 sm:opacity-70 scale-105 pointer-events-none select-none"
         >
           <source src="/videos/hero_background.mp4" type="video/mp4" />
         </video>
       </div>
 
       {/* Atmospheric Black-to-Burgundy Overlays */}
-      <div className="absolute inset-0 -z-20 bg-black/55 sm:bg-black/40 pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 -z-20 bg-black/30 sm:bg-black/20 pointer-events-none" aria-hidden="true" />
       <div
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-[#090809]/95 via-[#160B10]/80 sm:via-[#160B10]/70 to-transparent pointer-events-none"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-[#090809]/80 via-[#160B10]/50 sm:via-[#160B10]/40 to-transparent pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-[#090809] via-transparent to-[#090809]/50 pointer-events-none"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-[#090809]/80 via-transparent to-[#090809]/30 pointer-events-none"
         aria-hidden="true"
       />
       <div
