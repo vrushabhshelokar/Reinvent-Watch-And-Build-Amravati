@@ -22,7 +22,7 @@ export function CommunitySection() {
             </h2>
           </div>
           <p className="max-w-md text-xs sm:text-base leading-relaxed text-[#C2B6BA]/70 font-light">
-            Student developer circles and campus tech associations cooperating across Amravati to host this gathering.
+            Student Builder Groups and campus tech associations cooperating across Amravati to host this gathering.
           </p>
         </div>
 
