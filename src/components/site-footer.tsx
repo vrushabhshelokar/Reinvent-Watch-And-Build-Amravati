@@ -75,16 +75,18 @@ export function SiteFooter() {
         {/* Organizer Credit, Live Visitor Metrics & Copyright */}
         <div className="flex flex-col gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 text-xs text-[#C2B6BA]/50 sm:flex-row sm:items-center sm:justify-between font-mono">
           <p>
-            Organized by <span className="text-[#F5F0EE]/80">Student Builders of Amravati</span>
+            Organized by <span className="text-[#F5F0EE]/80">Student Builder Groups of Amravati</span>
           </p>
-          <VisitorCounter />
-          <p>© {currentYear} Reinvent Watch And Build — Amravati.</p>
+          <div className="hidden">
+            <VisitorCounter />
+          </div>
+          {/* <p>© {currentYear} Reinvent Watch And Build — Amravati.</p> */}
         </div>
 
         {/* Non-Affiliation Legal Disclaimer */}
-        <p className="mt-4 sm:mt-5 max-w-3xl text-[10px] sm:text-[11px] leading-relaxed sm:leading-5 text-[#C2B6BA]/40 font-mono">
+        {/* <p className="mt-4 sm:mt-5 max-w-3xl text-[10px] sm:text-[11px] leading-relaxed sm:leading-5 text-[#C2B6BA]/40 font-mono">
           Reinvent Watch And Build — Amravati is an independent, student-led community gathering inspired by AWS re:Invent.
-        </p>
+        </p> */}
 
                 {/* Developer Credit */}
         <div className="mt-6 border-t border-white/5 pt-4 flex flex-col items-center gap-2 sm:flex-row sm:justify-end">

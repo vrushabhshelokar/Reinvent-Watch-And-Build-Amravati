@@ -26,7 +26,7 @@ export function AboutSection() {
               <span className="text-[#C24A70]">Reinvent.</span>
             </h2>
             <p className="mt-5 sm:mt-8 max-w-xl text-sm sm:text-lg font-light leading-relaxed text-[#C2B6BA]">
-              Reinvent Watch And Build — Amravati brings undergraduate developers, students, and aspiring engineers together to explore technology, dissect modern serverless architectures, and build what comes next.
+              Reinvent Watch And Build - Amravati brings undergraduate developers, students, and aspiring engineers together to explore technology, dissect modern serverless architectures, and build what comes next.
             </p>
             <p className="mt-3 sm:mt-4 max-w-xl text-xs sm:text-sm font-light leading-relaxed text-[#C2B6BA]/75">
               Rather than watching conference announcements in isolation, this in-person gathering creates a space for collegiate builders in Vidarbha to analyze real production systems and collaborate on open-source projects.
@@ -40,15 +40,15 @@ export function AboutSection() {
                 The Community Behind The Gathering
               </span>
               <h3 className="mt-3 sm:mt-4 text-xl sm:text-3xl font-light leading-tight tracking-tight text-[#F5F0EE]">
-                Student Builders of Amravati
+                Student Builder Groups of Amravati
               </h3>
               <p className="mt-3 sm:mt-4 text-xs sm:text-base font-light leading-relaxed text-[#C2B6BA]">
-                We are a student-led developer network uniting peers across colleges in Amravati. Our goal is straightforward: help students, Developer, Tech Enthusiasts move beyond generic tutorials, experiment with cloud infrastructure, and turn classroom theory into working software.
+                We are a Community of Tech Enthusiasts, developer network uniting peers across colleges in Amravati. Our goal is straightforward: help students, Developer, Tech Enthusiasts move beyond generic tutorials, experiment with cloud infrastructure, and turn classroom theory into working software.
               </p>
             </div>
 
             <div className="mt-6 sm:mt-8 border-t border-white/10 pt-4 sm:pt-5 text-[11px] sm:text-xs font-mono text-[#C2B6BA]/50 leading-relaxed">
-              <strong className="text-[#C2B6BA]">Autonomous Notice:</strong> Independently organized by student builders in Vidarbha. Not an official Amazon Web Services conference, sponsorship, or corporate program.
+              {/* <strong className="text-[#C2B6BA]">Autonomous Notice:</strong> Independently organized by student builders in Vidarbha. Not an official Amazon Web Services conference, sponsorship, or corporate program. */}
             </div>
           </div>
         </div>

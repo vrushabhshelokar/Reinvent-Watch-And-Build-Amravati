@@ -18,7 +18,7 @@ export function CommunitySection() {
               Grassroots Network
             </span>
             <h2 className="text-3xl font-light tracking-[-0.06em] sm:text-6xl text-[#F5F0EE]">
-              Collaborating <span className="text-[#C24A70]">Groups.</span>
+              Our <span className="text-[#C24A70]">Sponsors.</span>
             </h2>
           </div>
           <p className="max-w-md text-xs sm:text-base leading-relaxed text-[#C2B6BA]/70 font-light">
