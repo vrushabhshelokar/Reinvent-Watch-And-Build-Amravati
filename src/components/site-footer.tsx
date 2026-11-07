@@ -75,7 +75,7 @@ export function SiteFooter() {
         {/* Organizer Credit, Live Visitor Metrics & Copyright */}
         <div className="flex flex-col gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 text-xs text-[#C2B6BA]/50 sm:flex-row sm:items-center sm:justify-between font-mono">
           <p>
-            Organized by <span className="text-[#F5F0EE]/80">Student Builder Groups of Amravati</span>
+            Organized by <span className="text-[#F5F0EE]/80">Builder Groups of Amravati</span>
           </p>
           <div className="hidden">
             <VisitorCounter />

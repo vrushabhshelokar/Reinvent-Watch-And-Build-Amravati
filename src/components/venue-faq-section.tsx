@@ -81,7 +81,7 @@ export function VenueFaqSection() {
                 Questions
               </span>
               <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm font-light text-[#C2B6BA]/80">
-                Need details regarding registration, college permissions, or project submissions?
+                Need any help regarding registration you can reach out to us
               </p>
               <a
                 href={`mailto:${displayEventConfig.contactEmail}?subject=Amravati%20Watch%20and%20Build%20Query`}

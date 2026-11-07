@@ -26,7 +26,7 @@ export function AboutSection() {
               <span className="text-[#C24A70]">Reinvent.</span>
             </h2>
             <p className="mt-5 sm:mt-8 max-w-xl text-sm sm:text-lg font-light leading-relaxed text-[#C2B6BA]">
-              Reinvent Watch And Build - Amravati brings undergraduate developers, students, and aspiring engineers together to explore technology, dissect modern serverless architectures, and build what comes next.
+              Reinvent Watch And Build - Amravati brings developers, students, and aspiring engineers together to explore technology, dissect modern serverless architectures, and build what comes next.
             </p>
             <p className="mt-3 sm:mt-4 max-w-xl text-xs sm:text-sm font-light leading-relaxed text-[#C2B6BA]/75">
               Rather than watching conference announcements in isolation, this in-person gathering creates a space for collegiate builders in Vidarbha to analyze real production systems and collaborate on open-source projects.
