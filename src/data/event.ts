@@ -24,7 +24,7 @@ export const rawEventConfig: EventConfig = {
   venueAddress: "Amravati, Maharashtra",
   venueCity: "Amravati, Maharashtra",
   format: "IN-PERSON",
-  lumaUrl: "https://luma.com/?locale=en-IN",
+  lumaUrl: "https://luma.com/syrvubzu",
   productionUrl: process.env.NEXT_PUBLIC_SITE_URL || "[CONFIRM: PRODUCTION_DOMAIN]",
   contactEmail: "organizers.amravati@gmail.com",
   socials: {
