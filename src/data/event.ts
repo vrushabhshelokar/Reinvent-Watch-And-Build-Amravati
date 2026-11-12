@@ -28,10 +28,8 @@ export const rawEventConfig: EventConfig = {
   productionUrl: process.env.NEXT_PUBLIC_SITE_URL || "[CONFIRM: PRODUCTION_DOMAIN]",
   contactEmail: "organizers.amravati@gmail.com",
   socials: {
-    github: "https://github.com",
     linkedin: "https://linkedin.com",
     instagram: "https://instagram.com",
-    discord: "https://discord.com",
   },
 };
 
